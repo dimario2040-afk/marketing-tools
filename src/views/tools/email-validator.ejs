@@ -1,13 +1,13 @@
 <div class="tool-page">
-  <h1>Email Validator</h1>
-  <p class="description">Check if an email address is formatted correctly.</p>
+  <h1><%= t('tools.email_title') %></h1>
+  <p class="description"><%= t('tools.email_desc') %></p>
 
   <div class="tool-widget">
     <div class="form-group">
-      <label>Email address</label>
+      <label><%= t('tools.email_label') %></label>
       <input type="email" id="email-input" class="form-input" placeholder="user@example.com">
     </div>
-    <button class="btn btn--primary" id="email-validate">Validate</button>
+    <button class="btn btn--primary" id="email-validate"><%= t('tools.email_btn') %></button>
   </div>
 
   <div class="tool-widget" id="email-result" style="display:none;">

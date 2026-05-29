@@ -1,36 +1,36 @@
 <div class="tool-page">
-  <h1>Creative Preview</h1>
-  <p class="description">Preview how your ad creative looks across different device sizes.</p>
+  <h1><%= t('tools.preview_title') %></h1>
+  <p class="description"><%= t('tools.preview_desc') %></p>
 
   <div class="tool-widget">
     <div class="form-group">
-      <label>Page URL or HTML snippet</label>
+      <label><%= t('tools.preview_label') %></label>
       <textarea id="preview-input" class="form-textarea" rows="4" placeholder="https://example.com or paste HTML"><h1 style="font-family:sans-serif;text-align:center;padding:40px 20px;">Your Ad Creative</h1>
 <p style="font-family:sans-serif;text-align:center;color:#666;">This is how it looks on different devices.</p></textarea>
     </div>
     <div style="display:flex;gap:8px;flex-wrap:wrap;">
-      <button class="btn btn--primary" id="preview-show">Show Preview</button>
-      <button class="btn btn--secondary" id="preview-clear">Clear</button>
+      <button class="btn btn--primary" id="preview-show"><%= t('tools.preview_btn') %></button>
+      <button class="btn btn--secondary" id="preview-clear"><%= t('common.clear') %></button>
     </div>
   </div>
 
   <div id="preview-frames" style="display:none;">
     <div class="tool-widget">
-      <h3>📱 Mobile (375 × 667)</h3>
+      <h3><%= t('tools.preview_mobile') %></h3>
       <div class="device-frame device-mobile">
         <iframe id="preview-mobile" class="preview-iframe" sandbox="allow-scripts allow-same-origin" loading="lazy"></iframe>
       </div>
     </div>
 
     <div class="tool-widget">
-      <h3>📟 Tablet (768 × 1024)</h3>
+      <h3><%= t('tools.preview_tablet') %></h3>
       <div class="device-frame device-tablet">
         <iframe id="preview-tablet" class="preview-iframe" sandbox="allow-scripts allow-same-origin" loading="lazy"></iframe>
       </div>
     </div>
 
     <div class="tool-widget">
-      <h3>🖥️ Desktop (1280 × 800)</h3>
+      <h3><%= t('tools.preview_desktop') %></h3>
       <div class="device-frame device-desktop">
         <iframe id="preview-desktop" class="preview-iframe" sandbox="allow-scripts allow-same-origin" loading="lazy"></iframe>
       </div>

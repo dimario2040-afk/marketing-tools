@@ -1,17 +1,17 @@
 <div class="tool-page">
-  <h1>Cyrillic Detector</h1>
-  <p class="description">Detect and highlight Cyrillic characters in your text.</p>
+  <h1><%= t('tools.cyrillic_title') %></h1>
+  <p class="description"><%= t('tools.cyrillic_desc') %></p>
 
   <div class="tool-widget">
     <div class="form-group">
-      <label>Text to check</label>
+      <label><%= t('tools.cyrillic_label') %></label>
       <textarea id="cyr-input" class="form-textarea" rows="8" placeholder="Paste text containing Cyrillic characters…"></textarea>
     </div>
-    <button class="btn btn--primary" id="cyr-check">Check</button>
+    <button class="btn btn--primary" id="cyr-check"><%= t('tools.cyrillic_btn') %></button>
   </div>
 
   <div class="tool-widget" id="cyr-result" style="display:none;">
-    <h3>Analysis</h3>
+    <h3><%= t('tools.cyrillic_analysis') %></h3>
     <p id="cyr-status"></p>
     <div id="cyr-highlight" class="result-box" style="white-space:pre-wrap;font-size:0.9rem;line-height:1.8;"></div>
   </div>

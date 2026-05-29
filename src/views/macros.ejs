@@ -1,9 +1,9 @@
 <div class="info-page">
-  <h1>Excel Macros for Marketing</h1>
-  <p>Ready-to-use VBA macros to automate repetitive marketing tasks in Excel.</p>
+  <h1><%= t('macros.title') %></h1>
+  <p><%= t('macros.intro') %></p>
 
-  <h2>1. Clean URLs from Export</h2>
-  <p>Strips query parameters from URL lists except UTM tags you want to keep.</p>
+  <h2><%= t('macros.macro1_title') %></h2>
+  <p><%= t('macros.macro1_desc') %></p>
   <pre class="code-block">
 Sub CleanURLs()
     Dim cell As Range
@@ -16,8 +16,8 @@ Sub CleanURLs()
     Next cell
 End Sub</pre>
 
-  <h2>2. Merge Campaign Data</h2>
-  <p>Combines rows from multiple sheets into one summary table.</p>
+  <h2><%= t('macros.macro2_title') %></h2>
+  <p><%= t('macros.macro2_desc') %></p>
   <pre class="code-block">
 Sub MergeSheets()
     Dim ws As Worksheet, dest As Worksheet
@@ -29,8 +29,8 @@ Sub MergeSheets()
     Next ws
 End Sub</pre>
 
-  <h2>3. Format Pivot Table</h2>
-  <p>Applies consistent formatting to all pivot tables in the workbook.</p>
+  <h2><%= t('macros.macro3_title') %></h2>
+  <p><%= t('macros.macro3_desc') %></p>
   <pre class="code-block">
 Sub FormatPivots()
     Dim pt As PivotTable
@@ -39,7 +39,7 @@ Sub FormatPivots()
     Next pt
 End Sub</pre>
 
-  <p><strong>How to use:</strong> Press <kbd>Alt+F11</kbd> to open the VBA editor, insert a new module, paste the macro, and run it with <kbd>F5</kbd>.</p>
+  <p><%= t('macros.howto') %></p>
 </div>
 
 <style>

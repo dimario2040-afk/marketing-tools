@@ -1,11 +1,11 @@
 <div class="info-page">
-  <h1>Video Editor Tools</h1>
-  <p>A comparison of free and paid video editing software for marketers and content creators.</p>
+  <h1><%= t('video_info.title') %></h1>
+  <p><%= t('video_info.intro') %></p>
 
-  <h2>Free Options</h2>
+  <h2><%= t('video_info.free_title') %></h2>
   <table class="guide-table">
     <thead>
-      <tr><th>Tool</th><th>Platform</th><th>Best For</th></tr>
+      <tr><th><%= t('video_info.free_th_tool') %></th><th><%= t('video_info.free_th_platform') %></th><th><%= t('video_info.free_th_best') %></th></tr>
     </thead>
     <tbody>
       <tr><td>DaVinci Resolve</td><td>Win / Mac</td><td>Professional colour grading and editing</td></tr>
@@ -16,10 +16,10 @@
     </tbody>
   </table>
 
-  <h2>Paid Options</h2>
+  <h2><%= t('video_info.paid_title') %></h2>
   <table class="guide-table">
     <thead>
-      <tr><th>Tool</th><th>Price (approx.)</th><th>Best For</th></tr>
+      <tr><th><%= t('video_info.paid_th_tool') %></th><th><%= t('video_info.paid_th_price') %></th><th><%= t('video_info.paid_th_best') %></th></tr>
     </thead>
     <tbody>
       <tr><td>Adobe Premiere Pro</td><td>$23/mo</td><td>Professional production</td></tr>
@@ -29,12 +29,12 @@
     </tbody>
   </table>
 
-  <h2>Quick Tips</h2>
+  <h2><%= t('video_info.tips_title') %></h2>
   <ul>
-    <li><strong>Aspect ratio:</strong> 16:9 for YouTube, 9:16 for Stories/Reels, 1:1 for Instagram feed</li>
-    <li><strong>Resolution:</strong> Export at 1080p (1920×1080) as a minimum for professional quality</li>
-    <li><strong>Format:</strong> H.264 in MP4 container offers the best compatibility</li>
-    <li><strong>Subtitles:</strong> Always add captions — most viewers watch without sound</li>
+    <li><%= t('video_info.tips_aspect') %></li>
+    <li><%= t('video_info.tips_resolution') %></li>
+    <li><%= t('video_info.tips_format') %></li>
+    <li><%= t('video_info.tips_subtitles') %></li>
   </ul>
 </div>
 

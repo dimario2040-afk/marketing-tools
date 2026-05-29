@@ -1,10 +1,10 @@
 <div class="tool-page">
-  <h1>VAST Inspector</h1>
-  <p class="description">Parse and inspect VAST ad tags to verify your video ad configuration.</p>
+  <h1><%= t('tools.vast_title') %></h1>
+  <p class="description"><%= t('tools.vast_desc') %></p>
 
   <div class="tool-widget">
     <div class="form-group">
-      <label>VAST XML</label>
+      <label><%= t('tools.vast_label') %></label>
       <textarea id="vast-input" class="form-textarea" rows="10" placeholder='Paste VAST XML here, e.g.:
 <?xml version="1.0"?>
 <VAST version="2.0">
@@ -28,11 +28,11 @@
   </Ad>
 </VAST>'></textarea>
     </div>
-    <button class="btn btn--primary" id="vast-parse">Parse VAST</button>
+    <button class="btn btn--primary" id="vast-parse"><%= t('tools.vast_btn') %></button>
   </div>
 
   <div class="tool-widget" id="vast-result" style="display:none;">
-    <h3>Parsed Information</h3>
+    <h3><%= t('tools.vast_parsed') %></h3>
     <div id="vast-output" class="result-box" style="font-size:0.85rem;line-height:1.7;"></div>
   </div>
 </div>

@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="<%= typeof langTag !== 'undefined' ? langTag : 'en' %>">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title><%= typeof title !== 'undefined' ? title + ' — ' : '' %>Marketing Tools</title>
-  <meta name="description" content="Free online marketing tools: UTM builder, QR generator, URL shortener, diff checker, and more.">
+  <title><%= typeof title !== 'undefined' ? title + ' — ' : '' %><%= t('nav.brand') %></title>
+  <meta name="description" content="<%= t('meta.description') %>">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">

@@ -1,23 +1,23 @@
 <div class="tool-page">
-  <h1>Image Resizer</h1>
-  <p class="description">Resize, crop, and convert images — supports JPEG, PNG, and WebP.</p>
+  <h1><%= t('tools.resizer_title') %></h1>
+  <p class="description"><%= t('tools.resizer_desc') %></p>
 
   <div class="tool-widget">
     <div class="form-group">
-      <label>Upload image</label>
+      <label><%= t('tools.resizer_upload') %></label>
       <input type="file" id="resize-file" class="form-input" accept="image/*">
     </div>
     <div class="tool-widget__row">
       <div class="form-group">
-        <label>Width (px)</label>
+        <label><%= t('tools.resizer_width') %></label>
         <input type="number" id="resize-width" class="form-input" value="800" min="1" max="4000">
       </div>
       <div class="form-group">
-        <label>Height (px, 0 = auto)</label>
+        <label><%= t('tools.resizer_height') %></label>
         <input type="number" id="resize-height" class="form-input" value="0" min="0" max="4000">
       </div>
       <div class="form-group" style="max-width:150px;">
-        <label>Format</label>
+        <label><%= t('tools.resizer_format') %></label>
         <select id="resize-format" class="form-select">
           <option value="jpeg">JPEG</option>
           <option value="png">PNG</option>
@@ -25,14 +25,14 @@
         </select>
       </div>
     </div>
-    <button class="btn btn--primary" id="resize-btn">Resize</button>
+    <button class="btn btn--primary" id="resize-btn"><%= t('tools.resizer_btn') %></button>
   </div>
 
   <div class="tool-widget" id="resize-result" style="display:none;">
-    <h3>Preview</h3>
+    <h3><%= t('common.preview') %></h3>
     <img id="resize-preview" class="img-preview" alt="Resized image">
     <br>
-    <a id="resize-download" class="btn btn--secondary btn--sm" style="margin-top:12px;display:inline-flex;" download>⬇ Download</a>
+    <a id="resize-download" class="btn btn--secondary btn--sm" style="margin-top:12px;display:inline-flex;" download><%= t('common.download') %></a>
   </div>
 </div>
 

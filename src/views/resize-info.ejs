@@ -1,11 +1,11 @@
 <div class="info-page">
-  <h1>Image Resize Guide</h1>
-  <p>Recommended image dimensions for social media platforms and digital ads.</p>
+  <h1><%= t('resize_guide.title') %></h1>
+  <p><%= t('resize_guide.intro') %></p>
 
-  <h2>Social Media</h2>
+  <h2><%= t('resize_guide.social_title') %></h2>
   <table class="guide-table">
     <thead>
-      <tr><th>Platform</th><th>Content Type</th><th>Dimensions (px)</th></tr>
+      <tr><th><%= t('resize_guide.social_th_platform') %></th><th><%= t('resize_guide.social_th_type') %></th><th><%= t('resize_guide.social_th_dimensions') %></th></tr>
     </thead>
     <tbody>
       <tr><td>Facebook</td><td>Feed Post</td><td>1200 × 630</td></tr>
@@ -23,10 +23,10 @@
     </tbody>
   </table>
 
-  <h2>Digital Ads</h2>
+  <h2><%= t('resize_guide.ads_title') %></h2>
   <table class="guide-table">
     <thead>
-      <tr><th>Format</th><th>Dimensions (px)</th></tr>
+      <tr><th><%= t('resize_guide.ads_th_format') %></th><th><%= t('resize_guide.ads_th_dimensions') %></th></tr>
     </thead>
     <tbody>
       <tr><td>Leaderboard</td><td>728 × 90</td></tr>
@@ -38,7 +38,7 @@
     </tbody>
   </table>
 
-  <p class="note">Need to resize an image? Use our <a href="/image-resizer">Image Resizer tool</a>.</p>
+  <p class="note"><%= t('resize_guide.note') %></p>
 </div>
 
 <style>

@@ -1,25 +1,25 @@
 <div class="tool-page">
-  <h1>URL Shortener</h1>
-  <p class="description">Create short, shareable links from long URLs.</p>
+  <h1><%= t('tools.shortener_title') %></h1>
+  <p class="description"><%= t('tools.shortener_desc') %></p>
 
   <div class="tool-widget">
     <div class="form-group">
-      <label>Long URL *</label>
+      <label><%= t('tools.shortener_url_label') %></label>
       <input type="url" id="shorten-input" class="form-input" placeholder="https://example.com/very/long/url?with=params" required>
     </div>
-    <button class="btn btn--primary" id="shorten-btn">Shorten</button>
+    <button class="btn btn--primary" id="shorten-btn"><%= t('tools.shortener_btn') %></button>
   </div>
 
   <div class="tool-widget" id="shorten-result" style="display:none;">
-    <label>Short URL</label>
+    <label><%= t('tools.shortener_result') %></label>
     <div class="short-url-display">
       <span id="shorten-output"></span>
-      <button class="btn btn--secondary btn--sm" id="shorten-copy">📋 Copy</button>
+      <button class="btn btn--secondary btn--sm" id="shorten-copy"><%= t('common.copy') %></button>
     </div>
   </div>
 
   <div class="tool-widget">
-    <h3>Recent Links</h3>
+    <h3><%= t('tools.shortener_recent') %></h3>
     <div id="shorten-list" class="result-box" style="font-size:0.8rem;">
       Loading…
     </div>

@@ -6,6 +6,7 @@ const dotenv = require('dotenv');
 dotenv.config({ path: path.join(__dirname, '..', '.env') });
 
 const errorHandler = require('./middleware/error-handler');
+const i18n = require('./middleware/i18n');
 const routes = require('./routes');
 
 const app = express();
@@ -19,7 +20,10 @@ app.set('views', path.join(__dirname, 'views'));
 app.use(morgan('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(express.static(path.join(__dirname, '..', 'public')));
+app.use(express.static(path.join(__dirname, 'public')));
+
+// i18n — AFTER static so language switching doesn't affect static files
+app.use(i18n);
 
 // Routes
 app.use(routes);

@@ -1,22 +1,22 @@
 <div class="tool-page">
-  <h1>Character Counter</h1>
-  <p class="description">Count characters, words, sentences, and paragraphs in your text.</p>
+  <h1><%= t('tools.counter_title') %></h1>
+  <p class="description"><%= t('tools.counter_desc') %></p>
 
   <div class="tool-widget">
     <div class="form-group">
-      <label>Your text</label>
+      <label><%= t('tools.counter_label') %></label>
       <textarea id="cc-input" class="form-textarea auto-resize" rows="10" placeholder="Paste or type your text here…" autofocus></textarea>
     </div>
   </div>
 
   <div class="tool-widget">
     <div class="cc-stats">
-      <div class="cc-stat"><span class="cc-stat__value" id="cc-chars">0</span><span class="cc-stat__label">Characters</span></div>
-      <div class="cc-stat"><span class="cc-stat__value" id="cc-chars-no-space">0</span><span class="cc-stat__label">Chars (no space)</span></div>
-      <div class="cc-stat"><span class="cc-stat__value" id="cc-words">0</span><span class="cc-stat__label">Words</span></div>
-      <div class="cc-stat"><span class="cc-stat__value" id="cc-sentences">0</span><span class="cc-stat__label">Sentences</span></div>
-      <div class="cc-stat"><span class="cc-stat__value" id="cc-paragraphs">0</span><span class="cc-stat__label">Paragraphs</span></div>
-      <div class="cc-stat"><span class="cc-stat__value" id="cc-lines">0</span><span class="cc-stat__label">Lines</span></div>
+      <div class="cc-stat"><span class="cc-stat__value" id="cc-chars">0</span><span class="cc-stat__label"><%= t('tools.counter_chars') %></span></div>
+      <div class="cc-stat"><span class="cc-stat__value" id="cc-chars-no-space">0</span><span class="cc-stat__label"><%= t('tools.counter_chars_ns') %></span></div>
+      <div class="cc-stat"><span class="cc-stat__value" id="cc-words">0</span><span class="cc-stat__label"><%= t('tools.counter_words') %></span></div>
+      <div class="cc-stat"><span class="cc-stat__value" id="cc-sentences">0</span><span class="cc-stat__label"><%= t('tools.counter_sentences') %></span></div>
+      <div class="cc-stat"><span class="cc-stat__value" id="cc-paragraphs">0</span><span class="cc-stat__label"><%= t('tools.counter_paragraphs') %></span></div>
+      <div class="cc-stat"><span class="cc-stat__value" id="cc-lines">0</span><span class="cc-stat__label"><%= t('tools.counter_lines') %></span></div>
     </div>
   </div>
 </div>

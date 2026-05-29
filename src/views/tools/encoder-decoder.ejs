@@ -1,14 +1,14 @@
 <div class="tool-page">
-  <h1>Encoder / Decoder</h1>
-  <p class="description">Encode or decode text between Base64, URL encoding, and HTML entities.</p>
+  <h1><%= t('tools.encoder_title') %></h1>
+  <p class="description"><%= t('tools.encoder_desc') %></p>
 
   <div class="tool-widget">
     <div class="form-group">
-      <label>Input</label>
+      <label><%= t('tools.encoder_input') %></label>
       <textarea id="enc-input" class="form-textarea" rows="4" placeholder="Enter text to encode/decode…"></textarea>
     </div>
     <div class="form-group" style="max-width:200px;">
-      <label>Method</label>
+      <label><%= t('tools.encoder_method') %></label>
       <select id="enc-method" class="form-select">
         <option value="base64-encode">Base64 Encode</option>
         <option value="base64-decode">Base64 Decode</option>
@@ -18,13 +18,13 @@
         <option value="html-decode">HTML Unescape</option>
       </select>
     </div>
-    <button class="btn btn--primary" id="enc-execute">Execute</button>
+    <button class="btn btn--primary" id="enc-execute"><%= t('tools.encoder_btn') %></button>
   </div>
 
   <div class="tool-widget" id="enc-result" style="display:none;">
-    <label>Output</label>
+    <label><%= t('common.output') %></label>
     <div class="result-box" id="enc-output"></div>
-    <button class="btn btn--secondary btn--sm" data-copy="#enc-output" style="margin-top:8px;">📋 Copy</button>
+    <button class="btn btn--secondary btn--sm" data-copy="#enc-output" style="margin-top:8px;"><%= t('common.copy') %></button>
   </div>
 </div>
 

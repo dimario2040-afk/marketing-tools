@@ -1,13 +1,13 @@
 <div class="tool-page">
-  <h1>Phone Number Validator</h1>
-  <p class="description">Validate and format international phone numbers.</p>
+  <h1><%= t('tools.phone_title') %></h1>
+  <p class="description"><%= t('tools.phone_desc') %></p>
 
   <div class="tool-widget">
     <div class="form-group">
-      <label>Phone number</label>
+      <label><%= t('tools.phone_label') %></label>
       <input type="text" id="phone-input" class="form-input" placeholder="+1 (555) 123-4567">
     </div>
-    <button class="btn btn--primary" id="phone-validate">Validate</button>
+    <button class="btn btn--primary" id="phone-validate"><%= t('tools.phone_btn') %></button>
   </div>
 
   <div class="tool-widget" id="phone-result" style="display:none;">

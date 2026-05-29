@@ -1,6 +1,6 @@
 <nav class="navbar" role="navigation">
   <div class="navbar__inner">
-    <a href="/" class="navbar__brand">Marketing Tools</a>
+    <a href="/" class="navbar__brand"><%= t('nav.brand') %></a>
 
     <button class="navbar__toggle" aria-label="Toggle menu" type="button">
       <span></span><span></span><span></span>
@@ -9,33 +9,48 @@
     <div class="navbar__menu">
       <div class="navbar__dropdown">
         <button class="navbar__link navbar__dropdown-trigger" type="button">
-          Tools ▾
+          <%= t('nav.tools') %>
         </button>
         <div class="navbar__dropdown-content">
-          <a href="/utm-builder" class="navbar__dropdown-item">UTM Builder</a>
-          <a href="/qr-generator" class="navbar__dropdown-item">QR Generator</a>
-          <a href="/url-shortener" class="navbar__dropdown-item">URL Shortener</a>
-          <a href="/diff-checker" class="navbar__dropdown-item">Diff Checker</a>
-          <a href="/encoder-decoder" class="navbar__dropdown-item">Encoder / Decoder</a>
-          <a href="/character-counter" class="navbar__dropdown-item">Character Counter</a>
-          <a href="/cyrillic-detector" class="navbar__dropdown-item">Cyrillic Detector</a>
-          <a href="/html-editor" class="navbar__dropdown-item">HTML Editor</a>
-          <a href="/email-validator" class="navbar__dropdown-item">Email Validator</a>
-          <a href="/phone-validator" class="navbar__dropdown-item">Phone Validator</a>
-          <a href="/transposition-tool" class="navbar__dropdown-item">Transposition Tool</a>
-          <a href="/image-resizer" class="navbar__dropdown-item">Image Resizer</a>
-          <a href="/redirect-checker" class="navbar__dropdown-item">Redirect Checker</a>
-          <a href="/creative-preview" class="navbar__dropdown-item">Creative Preview</a>
-          <a href="/vast-inspector" class="navbar__dropdown-item">VAST Inspector</a>
+          <a href="/utm-builder" class="navbar__dropdown-item"><%= t('nav.tool_utm') %></a>
+          <a href="/qr-generator" class="navbar__dropdown-item"><%= t('nav.tool_qr') %></a>
+          <a href="/url-shortener" class="navbar__dropdown-item"><%= t('nav.tool_shortener') %></a>
+          <a href="/diff-checker" class="navbar__dropdown-item"><%= t('nav.tool_diff') %></a>
+          <a href="/encoder-decoder" class="navbar__dropdown-item"><%= t('nav.tool_encoder') %></a>
+          <a href="/character-counter" class="navbar__dropdown-item"><%= t('nav.tool_counter') %></a>
+          <a href="/cyrillic-detector" class="navbar__dropdown-item"><%= t('nav.tool_cyrillic') %></a>
+          <a href="/html-editor" class="navbar__dropdown-item"><%= t('nav.tool_html') %></a>
+          <a href="/email-validator" class="navbar__dropdown-item"><%= t('nav.tool_email') %></a>
+          <a href="/phone-validator" class="navbar__dropdown-item"><%= t('nav.tool_phone') %></a>
+          <a href="/transposition-tool" class="navbar__dropdown-item"><%= t('nav.tool_transpose') %></a>
+          <a href="/image-resizer" class="navbar__dropdown-item"><%= t('nav.tool_resizer') %></a>
+          <a href="/redirect-checker" class="navbar__dropdown-item"><%= t('nav.tool_redirect') %></a>
+          <a href="/creative-preview" class="navbar__dropdown-item"><%= t('nav.tool_preview') %></a>
+          <a href="/vast-inspector" class="navbar__dropdown-item"><%= t('nav.tool_vast') %></a>
         </div>
       </div>
 
-      <a href="/macros" class="navbar__link">Excel Macros</a>
-      <a href="/dictionary" class="navbar__link">Dictionary</a>
-      <a href="/about" class="navbar__link">About</a>
+      <a href="/macros" class="navbar__link"><%= t('nav.excel') %></a>
+      <a href="/dictionary" class="navbar__link"><%= t('nav.dictionary') %></a>
+      <a href="/about" class="navbar__link"><%= t('nav.about') %></a>
+      <a href="?lang=<%= lang === 'ru' ? 'en' : 'ru' %>" class="navbar__link navbar__lang"><%= t('nav.switch_lang') %></a>
     </div>
   </div>
 </nav>
+
+<style>
+/* ... existing styles plus: */
+.navbar__lang {
+  border: 1px solid var(--color-border);
+  border-radius: 100px;
+  padding: 4px 12px;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+@media (max-width: 768px) {
+  .navbar__lang { border: none; padding: 8px 12px; }
+}
+</style>
 
 <style>
 .navbar {
