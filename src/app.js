@@ -15,6 +15,7 @@ const app = express();
 app.engine('ejs', require('ejs-mate'));
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
+app.locals._layoutFile = 'layout'; // apply layout.ejs to all views
 
 // Middleware
 app.use(morgan('dev'));
