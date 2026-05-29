@@ -164,25 +164,158 @@
   "dictionary": {
     "title": "Marketing Dictionary",
     "intro": "Common digital marketing terms and acronyms explained.",
-    "api": "Application Programming Interface — a way for two software applications to communicate.",
-    "bounce": "The percentage of visitors who leave a site after viewing only one page.",
-    "cpa": "Cost Per Acquisition — the cost to acquire one paying customer.",
-    "cpc": "Cost Per Click — the price paid for each click on an ad.",
-    "cpm": "Cost Per Mille — the cost per 1,000 ad impressions.",
-    "crm": "Customer Relationship Management — tools for managing interactions with customers.",
-    "ctr": "Click-Through Rate — the ratio of clicks to impressions, expressed as a percentage.",
-    "cvr": "Conversion Rate — the percentage of users who complete a desired action.",
-    "dau_mau": "Daily Active Users / Monthly Active Users — engagement metrics for apps and platforms.",
-    "heat": "Highest Earning Available Tomorrow — a keyword bidding strategy for search ads.",
-    "kpi": "Key Performance Indicator — a measurable value that shows progress toward a goal.",
-    "ltv": "Lifetime Value / Customer Lifetime Value — the total revenue expected from a customer.",
-    "ppc": "Pay Per Click — an advertising model where the advertiser pays per click.",
-    "roas": "Return On Ad Spend — revenue generated per dollar spent on advertising.",
-    "roi": "Return On Investment — the profitability of an investment relative to its cost.",
-    "sem": "Search Engine Marketing — paid advertising on search engines.",
-    "seo": "Search Engine Optimisation — improving a site's visibility in organic search results.",
-    "serp": "Search Engine Results Page — the page shown after a user performs a search.",
-    "utm": "Urchin Tracking Module — parameters added to URLs for campaign tracking in analytics."
+    "api": {
+      "brief": "A set of protocols that allows different software applications to communicate with each other.",
+      "desc": "API (Application Programming Interface) defines how software components should interact. In marketing, APIs connect your CRM with ad platforms, pull analytics data into dashboards, or automate email campaigns. Companies like Google, Meta, and Salesforce expose APIs that let marketers programmatically manage campaigns, audiences, and reporting without manual work.",
+      "examples": [
+        "\"Let's use the Meta Ads API to pull yesterday's campaign performance into our Looker dashboard automatically.\"",
+        "\"The email platform has an API — we can sync new signups from the landing page directly to the mailing list.\""
+      ]
+    },
+    "bounce": {
+      "brief": "A single-page visit where the user left without any interaction.",
+      "desc": "Bounce rate measures the percentage of visitors who land on a page and leave without clicking anywhere, filling a form, or visiting another page. A high bounce rate (60%+) often signals that the page content doesn't match the visitor's intent, the page loads too slowly, or the design pushes people away. However, bounce rate can be misleading for blogs or single-page sites where a 'bounce' might actually be a successful read.",
+      "examples": [
+        "\"Our product page bounce rate jumped to 72% after the redesign — something is off with the hero section.\"",
+        "\"The landing page has a 45% bounce rate, which is normal for cold traffic from display ads.\""
+      ]
+    },
+    "cpa": {
+      "brief": "The total cost spent to acquire one paying customer.",
+      "desc": "Cost Per Acquisition (CPA) divides total campaign spend by the number of conversions attributed to it. It's the ultimate efficiency metric for performance marketing. If a Facebook campaign spent $5,000 and generated 50 purchases, the CPA is $100. Knowing your target CPA (often set at 20-30% of customer lifetime value) determines whether a channel is worth scaling.",
+      "examples": [
+        "\"Our target CPA is $25, but Google Ads is delivering at $18 — let's increase the budget by 30%.\"",
+        "\"The CPA on Instagram Stories is $40, while feed ads are $22. Let's shift budget to the feed.\""
+      ]
+    },
+    "cpc": {
+      "brief": "The amount paid each time someone clicks on your ad.",
+      "desc": "Cost Per Click (CPC) is the price an advertiser pays for a single click in pay-per-click (PPC) campaigns. CPC varies by industry, keyword competition, and quality score. Highly commercial queries like 'car insurance' can have CPCs above $50, while long-tail informational keywords may cost under $0.50. Lowering CPC while maintaining conversion rate is a core optimization goal for search advertisers.",
+      "examples": [
+        "\"Our average CPC went from $1.20 to $0.85 after improving the ad relevance score — that's a 29% reduction.\"",
+        "\"The branded keywords have a CPC of $0.15, but generic terms are $3.50. Let's prioritize branded.\""
+      ]
+    },
+    "cpm": {
+      "brief": "The cost for 1,000 impressions (ad views) of your campaign.",
+      "desc": "Cost Per Mille (CPM, from Latin 'mille' for thousand) measures how much an advertiser pays for 1,000 ad impressions. It is the standard pricing model for awareness campaigns on platforms like YouTube, programmatic display, and social media. CPM rates vary widely: niche B2B audiences might command $30+ CPM, while broad consumer targeting can be under $5. CPM campaigns prioritize reach over direct response.",
+      "examples": [
+        "\"The video campaign has a $12 CPM with 85% view-through rate — good reach efficiency.\"",
+        "\"We're paying $8 CPM on programmatic but only $4 on Meta. Let's rebalance the display budget.\""
+      ]
+    },
+    "crm": {
+      "brief": "Software that manages a company's interactions with current and potential customers.",
+      "desc": "Customer Relationship Management (CRM) platforms store contact details, track communication history, manage sales pipelines, and automate follow-ups. Popular CRMs include Salesforce, HubSpot, and Zoho. For marketers, a CRM is the single source of truth for lead scoring, email segmentation, and attributing revenue to specific campaigns. Integrating your ad platforms with CRM enables closed-loop reporting.",
+      "examples": [
+        "\"We need to tag all webinar leads in CRM with the source 'Q3 Webinar' so we can track eventual conversions.\"",
+        "\"The CRM shows that leads from organic search have a 40% higher LTV than paid — let's invest more in SEO.\""
+      ]
+    },
+    "ctr": {
+      "brief": "The percentage of people who clicked on your ad or link out of those who saw it.",
+      "desc": "Click-Through Rate (CTR) is calculated as clicks divided by impressions, multiplied by 100. It measures how compelling your creative and copy are at driving action. Average CTR varies by channel: search ads average 3-5%, display ads around 0.5%, and email campaigns 2-5%. Improving CTR often involves testing headlines, calls-to-action, imagery, and audience targeting.",
+      "examples": [
+        "\"The new ad copy lifted CTR from 1.8% to 3.2% — the 'limited time' angle works.\"",
+        "\"Our email CTR dropped to 1.1% this month. Let's A/B test subject lines and preview text.\""
+      ]
+    },
+    "cvr": {
+      "brief": "The percentage of users who completed a desired action out of total visitors.",
+      "desc": "Conversion Rate (CVR) measures how effectively your funnel turns visitors into leads or customers. A conversion can be a purchase, a form submission, a sign-up, or any defined goal. E-commerce sites average 2-5% CVR, while B2B landing pages might convert at 10-20%. Optimising CVR (CRO) involves testing page layout, copy, form fields, load speed, and trust signals.",
+      "examples": [
+        "\"Our checkout page has a 3.2% CVR, but adding trust badges should push it past 4%.\"",
+        "\"The landing page CVR is 12% for desktop but only 3% on mobile — we need to fix the mobile form.\""
+      ]
+    },
+    "dau_mau": {
+      "brief": "Daily and monthly active users — the primary engagement metrics for apps and digital platforms.",
+      "desc": "DAU (Daily Active Users) and MAU (Monthly Active Users) measure how many unique users engage with a product in a day versus a month. The DAU/MAU ratio (also called stickiness) indicates user retention: a ratio above 50% means the average user opens the app more than 15 days per month. These metrics are critical for SaaS, mobile apps, and content platforms to gauge product-market fit and churn risk.",
+      "examples": [
+        "\"Our DAU grew to 50K, but the DAU/MAU ratio dropped to 35% — users are signing up but not coming back.\"",
+        "\"After the onboarding redesign, stickiness went from 40% to 55%. Users are forming the habit.\""
+      ]
+    },
+    "heat": {
+      "brief": "A keyword bidding strategy focused on the highest-earning term available the next day.",
+      "desc": "HEAT (Highest Earning Available Tomorrow) is a search advertising approach where bids are concentrated on the single keyword predicted to generate the most revenue on the following day. Rather than spreading budget across dozens of keywords, HEAT uses historical performance data and predictive models to pick one high-converting term each day. It is a high-risk, high-reward strategy often used in aggressive performance marketing.",
+      "examples": [
+        "\"The HEAT model picked 'emergency plumbing' for tomorrow with a projected ROAS of 6x — let's put 80% of budget on it.\"",
+        "\"We tested HEAT bidding against broad distribution and saw 40% higher ROAS but 60% less volume. Worth it?\"" 
+      ]
+    },
+    "kpi": {
+      "brief": "A measurable value that tracks progress toward a specific business objective.",
+      "desc": "Key Performance Indicators (KPIs) help marketers and businesses quantify success. Common marketing KPIs include customer acquisition cost (CAC), return on ad spend (ROAS), conversion rate, email open rate, and net promoter score (NPS). Good KPIs follow the SMART framework: Specific, Measurable, Achievable, Relevant, and Time-bound. Without clear KPIs, it's impossible to determine whether a campaign or strategy is working.",
+      "examples": [
+        "\"Our primary KPI for this quarter is reducing CAC by 20% while maintaining a 3x ROAS.\"",
+        "\"The email team's KPIs are 25% open rate and 3% click rate — they've hit both for three months.\""
+      ]
+    },
+    "ltv": {
+      "brief": "The total revenue a business can expect from a single customer over their entire relationship.",
+      "desc": "Lifetime Value (LTV or CLV) projects the net profit attributed to a customer throughout their relationship with the company. LTV helps determine how much you can afford to spend on acquiring a customer (maximum CAC). A healthy business typically aims for an LTV:CAC ratio of 3:1 or higher. Improving LTV involves increasing purchase frequency, average order value, and retention rates through upsells, subscriptions, and loyalty programs.",
+      "examples": [
+        "\"Our average customer LTV is $450, and CAC is $120 — that's a healthy 3.75x ratio.\"",
+        "\"If we increase subscription retention by 5%, LTV jumps from $600 to $780. Let's invest in onboarding.\""
+      ]
+    },
+    "ppc": {
+      "brief": "An advertising model where the advertiser pays each time a user clicks on their ad.",
+      "desc": "Pay Per Click (PPC) is the backbone of search engine advertising (Google Ads, Bing Ads) and social media ads. Advertisers bid on keywords or audiences, and the platform charges only when someone clicks. PPC is attractive because spending directly ties to engagement. Success in PPC depends on keyword research, ad copy quality, landing page relevance, and bid management. The average small business spends $9,000-$10,000 per month on Google Ads.",
+      "examples": [
+        "\"Our PPC spend last month was $8,500 with a 4.2x ROAS — the best-performing channel.\"",
+        "\"We're launching a new PPC campaign targeting 'project management software' keywords with a $50 daily budget.\""
+      ]
+    },
+    "roas": {
+      "brief": "Revenue generated for every dollar spent on advertising.",
+      "desc": "Return On Ad Spend (ROAS) is calculated as total conversion revenue divided by total ad spend. A ROAS of 4x means every $1 spent returns $4 in revenue. While similar to ROI, ROAS focuses specifically on advertising efficiency rather than overall campaign profitability. Target ROAS varies by business model: e-commerce often aims for 4x, while SaaS with high LTV can operate profitably at 2x.",
+      "examples": [
+        "\"The Meta campaign is delivering 3.8x ROAS — above our 3x target. Let's scale the budget.\"",
+        "\"ROAS dropped to 1.5x on Google Shopping. Pause and review the product feed quality.\""
+      ]
+    },
+    "roi": {
+      "brief": "The profitability of an investment measured as a percentage of its cost.",
+      "desc": "Return On Investment (ROI) is the universal profitability metric: (gain from investment - cost of investment) / cost of investment × 100%. Unlike ROAS which only considers ad spend, ROI accounts for all costs including creative production, tools, salaries, and overhead. A campaign with 3x ROAS might have only 20% ROI after accounting for full costs. ROI is the metric executives care about most.",
+      "examples": [
+        "\"The influencer campaign generated $50K in revenue at $20K spend, but with production and fees the real ROI is 35%.\"",
+        "\"We need to calculate the ROI of the new CRM before presenting the budget request to the board.\""
+      ]
+    },
+    "sem": {
+      "brief": "Paid advertising on search engines to increase visibility in search results.",
+      "desc": "Search Engine Marketing (SEM) refers specifically to paid search ads (Google Ads, Bing Ads), as opposed to SEO which covers organic rankings. SEM lets businesses appear at the top of search results for commercial queries immediately, rather than waiting months for SEO to take effect. A typical SEM strategy combines branded keywords, competitor terms, and high-intent product searches. Budget allocation between SEM and SEO is a strategic decision based on timeline and competition.",
+      "examples": [
+        "\"We're launching a new product next week — let's start with an SEM campaign while SEO content is being written.\"",
+        "\"SEM drives 60% of our leads but costs 4x more per lead than SEO. We need to balance both.\""
+      ]
+    },
+    "seo": {
+      "brief": "The practice of optimising a website to rank higher in organic (unpaid) search results.",
+      "desc": "Search Engine Optimisation (SEO) involves technical improvements, content creation, and link building to increase a site's visibility in search engines like Google. Key pillars include on-page SEO (title tags, meta descriptions, content quality), technical SEO (site speed, mobile-friendliness, structured data), and off-page SEO (backlinks, social signals). SEO is a long-term investment: it typically takes 3-6 months to see meaningful results, but the traffic is free and compounds over time.",
+      "examples": [
+        "\"Our SEO strategy for Q2 focuses on 30 topical articles targeting informational keywords in the consideration stage.\"",
+        "\"The site migration dropped our organic traffic by 40% — we need to fix 301 redirects and resubmit the sitemap.\""
+      ]
+    },
+    "serp": {
+      "brief": "The page displayed by a search engine in response to a user's query.",
+      "desc": "Search Engine Results Page (SERP) features organic listings, paid ads, and rich elements like featured snippets, knowledge panels, image packs, and 'People also ask' boxes. Modern SERPs are highly visual and interactive — a query can show a map, local businesses, videos, and shopping results all on one page. SEOs optimise for SERP features beyond traditional blue links: appearing in position zero (featured snippet) can drive massive traffic even for users who don't click through.",
+      "examples": [
+        "\"We secured the featured snippet for 'how to calculate ROAS' — that's going to pull a lot of top-of-funnel traffic.\"",
+        "\"The SERP for our target keyword shows two video results. Let's create a YouTube tutorial to capture that placement.\""
+      ]
+    },
+    "utm": {
+      "brief": "Parameters added to a URL that track where traffic comes from in analytics tools.",
+      "desc": "UTM (Urchin Tracking Module) parameters are tags appended to URLs — utm_source, utm_medium, utm_campaign, utm_term, and utm_content — that tell Google Analytics exactly where a visitor came from. A standard UTM link looks like example.com/?utm_source=newsletter&utm_medium=email&utm_campaign=spring_sale. Consistent UTM naming conventions are essential for accurate campaign attribution; inconsistent tags create data noise that makes reporting unreliable.",
+      "examples": [
+        "\"Don't forget to add UTM tags to all links in the upcoming email blast: source=newsletter, medium=email, campaign=june_promo.\"",
+        "\"Our UTM report shows that the LinkedIn ad campaign drove 200 conversions, but the Facebook retargeting only 45. Let's reallocate.\""
+      ]
+    }
   },
   "tools": {
     "utm_title": "UTM Builder",

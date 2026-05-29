@@ -1,81 +1,54 @@
-<div class="info-page">
-  <h1><%= t('dictionary.title') %></h1>
-  <p><%= t('dictionary.intro') %></p>
+<div class="glossary">
+  <h1 class="glossary__title"><%= t('dictionary.title') %></h1>
+  <p class="glossary__intro"><%= t('dictionary.intro') %></p>
 
-  <dl class="glossary">
-    <dt>API</dt>
-    <dd><%= t('dictionary.api') %></dd>
+  <% var terms = [
+    { id: 'api', label: 'API' },
+    { id: 'bounce', label: 'Bounce Rate' },
+    { id: 'cpa', label: 'CPA' },
+    { id: 'cpc', label: 'CPC' },
+    { id: 'cpm', label: 'CPM' },
+    { id: 'crm', label: 'CRM' },
+    { id: 'ctr', label: 'CTR' },
+    { id: 'cvr', label: 'CVR' },
+    { id: 'dau_mau', label: 'DAU / MAU' },
+    { id: 'heat', label: 'HEAT' },
+    { id: 'kpi', label: 'KPI' },
+    { id: 'ltv', label: 'LTV / CLV' },
+    { id: 'ppc', label: 'PPC' },
+    { id: 'roas', label: 'ROAS' },
+    { id: 'roi', label: 'ROI' },
+    { id: 'sem', label: 'SEM' },
+    { id: 'seo', label: 'SEO' },
+    { id: 'serp', label: 'SERP' },
+    { id: 'utm', label: 'UTM' }
+  ]; %>
 
-    <dt>Bounce Rate</dt>
-    <dd><%= t('dictionary.bounce') %></dd>
-
-    <dt>CPA</dt>
-    <dd><%= t('dictionary.cpa') %></dd>
-
-    <dt>CPC</dt>
-    <dd><%= t('dictionary.cpc') %></dd>
-
-    <dt>CPM</dt>
-    <dd><%= t('dictionary.cpm') %></dd>
-
-    <dt>CRM</dt>
-    <dd><%= t('dictionary.crm') %></dd>
-
-    <dt>CTR</dt>
-    <dd><%= t('dictionary.ctr') %></dd>
-
-    <dt>CVR</dt>
-    <dd><%= t('dictionary.cvr') %></dd>
-
-    <dt>DAU / MAU</dt>
-    <dd><%= t('dictionary.dau_mau') %></dd>
-
-    <dt>HEAT</dt>
-    <dd><%= t('dictionary.heat') %></dd>
-
-    <dt>KPI</dt>
-    <dd><%= t('dictionary.kpi') %></dd>
-
-    <dt>LTV / CLV</dt>
-    <dd><%= t('dictionary.ltv') %></dd>
-
-    <dt>PPC</dt>
-    <dd><%= t('dictionary.ppc') %></dd>
-
-    <dt>ROAS</dt>
-    <dd><%= t('dictionary.roas') %></dd>
-
-    <dt>ROI</dt>
-    <dd><%= t('dictionary.roi') %></dd>
-
-    <dt>SEM</dt>
-    <dd><%= t('dictionary.sem') %></dd>
-
-    <dt>SEO</dt>
-    <dd><%= t('dictionary.seo') %></dd>
-
-    <dt>SERP</dt>
-    <dd><%= t('dictionary.serp') %></dd>
-
-    <dt>UTM</dt>
-    <dd><%= t('dictionary.utm') %></dd>
-  </dl>
+  <% terms.forEach(function(term) { %>
+    <% var data = t('dictionary.' + term.id); %>
+    <details class="glossary-term">
+      <summary class="glossary-term__header">
+        <span class="glossary-term__abbr"><%= term.label %></span>
+        <span class="glossary-term__brief"><%= typeof data === 'object' ? data.brief : data %></span>
+        <span class="glossary-term__chevron">▾</span>
+      </summary>
+      <div class="glossary-term__body">
+        <% if (typeof data === 'object' && data.desc) { %>
+          <div class="glossary-term__desc"><%= data.desc %></div>
+        <% } else if (typeof data !== 'object') { %>
+          <div class="glossary-term__desc"><%= data %></div>
+        <% } %>
+        <% if (typeof data === 'object' && data.examples && data.examples.length) { %>
+        <div class="glossary-term__examples">
+          <span class="glossary-examples-heading">Examples:</span>
+          <ul>
+            <% data.examples.forEach(function(ex) { %>
+              <li><%= ex %></li>
+            <% }); %>
+          </ul>
+        </div>
+        <% } %>
+      </div>
+    </details>
+  <% }); %>
 </div>
-
-<style>
-.info-page { max-width: 720px; margin: 0 auto; }
-.info-page h1 { margin-bottom: 16px; }
-.glossary { margin-bottom: 24px; }
-.glossary dt {
-  font-weight: 600;
-  font-size: 0.95rem;
-  margin-top: 16px;
-  color: var(--color-primary);
-}
-.glossary dd {
-  margin-left: 0;
-  font-size: 0.875rem;
-  color: var(--color-text-secondary);
-  margin-top: 2px;
-}
-</style>

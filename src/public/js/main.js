@@ -3,6 +3,36 @@
  */
 
 document.addEventListener('DOMContentLoaded', function () {
+  // ── Mobile nav toggle ──────────────────────────
+  var toggleBtn = document.querySelector('.navbar__toggle');
+  var nav = document.querySelector('.navbar__nav');
+  if (toggleBtn && nav) {
+    toggleBtn.addEventListener('click', function () {
+      nav.classList.toggle('open');
+    });
+    // Close on link click
+    nav.querySelectorAll('a').forEach(function (link) {
+      link.addEventListener('click', function () {
+        nav.classList.remove('open');
+      });
+    });
+  }
+
+  // ── Smooth details/summary accordion ───────────
+  document.querySelectorAll('.glossary-term').forEach(function (details) {
+    var summary = details.querySelector('.glossary-term__header');
+    if (!summary) return;
+    summary.addEventListener('click', function (e) {
+      e.preventDefault();
+      var isOpen = details.hasAttribute('open');
+      if (isOpen) {
+        details.removeAttribute('open');
+      } else {
+        details.setAttribute('open', '');
+      }
+    });
+  });
+
   // ── Copy-to-clipboard ────────────────────────────
   document.querySelectorAll('[data-copy]').forEach(function (el) {
     el.addEventListener('click', function () {
@@ -11,8 +41,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
       var text = target.value || target.textContent || '';
       navigator.clipboard.writeText(text).then(function () {
-        el.classList.add('copied');
-        setTimeout(function () { el.classList.remove('copied'); }, 1500);
+        showCopyFeedback(el);
       }).catch(function () {
         // Fallback for older browsers
         var ta = document.createElement('textarea');
@@ -23,11 +52,20 @@ document.addEventListener('DOMContentLoaded', function () {
         ta.select();
         document.execCommand('copy');
         document.body.removeChild(ta);
-        el.classList.add('copied');
-        setTimeout(function () { el.classList.remove('copied'); }, 1500);
+        showCopyFeedback(el);
       });
     });
   });
+
+  function showCopyFeedback(el) {
+    var orig = el.innerHTML;
+    el.innerHTML = '✓ Copied!';
+    el.style.pointerEvents = 'none';
+    setTimeout(function () {
+      el.innerHTML = orig;
+      el.style.pointerEvents = '';
+    }, 1200);
+  }
 
   // ── Live character/word counter ──────────────────
   document.querySelectorAll('[data-count]').forEach(function (el) {
