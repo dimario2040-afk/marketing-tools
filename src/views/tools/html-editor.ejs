@@ -1,0 +1,40 @@
+<div class="tool-page">
+  <h1>HTML Editor</h1>
+  <p class="description">Write HTML and preview the result in real time.</p>
+
+  <div class="tool-widget">
+    <div class="form-group">
+      <label>HTML</label>
+      <textarea id="html-input" class="form-textarea auto-resize" rows="12" placeholder="<h1>Hello, world!</h1>"><h1>Hello, world!</h1>
+<p>Start typing HTML here — the preview updates live.</p></textarea>
+    </div>
+    <div style="display:flex;gap:8px;flex-wrap:wrap;">
+      <button class="btn btn--primary" id="html-refresh">Refresh Preview</button>
+      <button class="btn btn--secondary" id="html-clear">Clear</button>
+    </div>
+  </div>
+
+  <div class="tool-widget">
+    <h3>Preview</h3>
+    <div id="html-preview" class="result-box" style="min-height:200px;background:#fff;border:2px dashed var(--color-border);overflow:auto;"></div>
+  </div>
+</div>
+
+<script>
+function updatePreview() {
+  var html = document.getElementById('html-input').value;
+  document.getElementById('html-preview').innerHTML = html;
+}
+
+document.getElementById('html-refresh').addEventListener('click', updatePreview);
+document.getElementById('html-clear').addEventListener('click', function () {
+  document.getElementById('html-input').value = '';
+  document.getElementById('html-preview').innerHTML = '';
+});
+
+// Auto-refresh on input
+document.getElementById('html-input').addEventListener('input', updatePreview);
+
+// Initial render
+updatePreview();
+</script>

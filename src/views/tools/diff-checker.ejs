@@ -1,0 +1,68 @@
+<div class="tool-page">
+  <h1>Diff Checker</h1>
+  <p class="description">Compare two texts side by side and highlight differences.</p>
+
+  <div class="tool-widget textarea-pair">
+    <div class="form-group">
+      <label>Original text</label>
+      <textarea id="diff-a" class="form-textarea" rows="8" placeholder="Paste original text here…"></textarea>
+    </div>
+    <div class="form-group">
+      <label>Changed text</label>
+      <textarea id="diff-b" class="form-textarea" rows="8" placeholder="Paste changed text here…"></textarea>
+    </div>
+  </div>
+
+  <button class="btn btn--primary" id="diff-compare">Compare</button>
+  <button class="btn btn--secondary" id="diff-swap">⇄ Swap</button>
+
+  <div class="tool-widget" id="diff-result" style="display:none;">
+    <h3>Differences</h3>
+    <pre class="result-box" id="diff-output" style="white-space:pre-wrap;font-family:monospace;font-size:0.8rem;"></pre>
+  </div>
+</div>
+
+<script>
+document.getElementById('diff-compare').addEventListener('click', function () {
+  var a = document.getElementById('diff-a').value;
+  var b = document.getElementById('diff-b').value;
+  var out = document.getElementById('diff-output');
+  var result = document.getElementById('diff-result');
+
+  if (a === b) {
+    out.textContent = '✓ Texts are identical.';
+    out.style.color = 'var(--color-success)';
+    result.style.display = 'block';
+    return;
+  }
+
+  // Simple line-based diff
+  var linesA = a.split('\n');
+  var linesB = b.split('\n');
+  var maxLen = Math.max(linesA.length, linesB.length);
+  var output = [];
+
+  for (var i = 0; i < maxLen; i++) {
+    var la = linesA[i] !== undefined ? linesA[i] : '';
+    var lb = linesB[i] !== undefined ? linesB[i] : '';
+    if (la === lb) {
+      output.push('  ' + la);
+    } else {
+      if (la) output.push('− ' + la);
+      if (lb) output.push('+ ' + lb);
+    }
+  }
+
+  out.textContent = output.join('\n');
+  out.style.color = 'inherit';
+  result.style.display = 'block';
+});
+
+document.getElementById('diff-swap').addEventListener('click', function () {
+  var a = document.getElementById('diff-a');
+  var b = document.getElementById('diff-b');
+  var tmp = a.value;
+  a.value = b.value;
+  b.value = tmp;
+});
+</script>

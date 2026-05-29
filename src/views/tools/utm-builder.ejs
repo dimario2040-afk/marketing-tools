@@ -1,0 +1,67 @@
+<div class="tool-page">
+  <h1>UTM Builder</h1>
+  <p class="description">Build UTM-tagged URLs for tracking campaigns in Google Analytics.</p>
+
+  <div class="tool-widget">
+    <div class="form-group">
+      <label>Page URL *</label>
+      <input type="url" id="utm-url" class="form-input" placeholder="https://example.com/page" required>
+    </div>
+    <div class="form-group">
+      <label>Campaign Source * (referrer: google, newsletter, facebook)</label>
+      <input type="text" id="utm-source" class="form-input" placeholder="newsletter">
+    </div>
+    <div class="form-group">
+      <label>Campaign Medium (channel: email, cpc, social)</label>
+      <input type="text" id="utm-medium" class="form-input" placeholder="email">
+    </div>
+    <div class="form-group">
+      <label>Campaign Name *</label>
+      <input type="text" id="utm-campaign" class="form-input" placeholder="spring_sale_2026">
+    </div>
+    <div class="form-group">
+      <label>Campaign Term (paid keywords)</label>
+      <input type="text" id="utm-term" class="form-input" placeholder="marketing+tools">
+    </div>
+    <div class="form-group">
+      <label>Campaign Content (A/B test variant)</label>
+      <input type="text" id="utm-content" class="form-input" placeholder="variant_a">
+    </div>
+
+    <button class="btn btn--primary" id="utm-generate">Generate URL</button>
+  </div>
+
+  <div class="tool-widget" id="utm-result" style="display:none;">
+    <label>Your UTM URL</label>
+    <div class="result-box" id="utm-output"></div>
+    <button class="btn btn--secondary btn--sm" data-copy="#utm-output" style="margin-top:8px;">📋 Copy</button>
+  </div>
+</div>
+
+<script>
+document.getElementById('utm-generate').addEventListener('click', function () {
+  var url = document.getElementById('utm-url').value.trim();
+  var source = document.getElementById('utm-source').value.trim();
+  var medium = document.getElementById('utm-medium').value.trim();
+  var campaign = document.getElementById('utm-campaign').value.trim();
+  var term = document.getElementById('utm-term').value.trim();
+  var content = document.getElementById('utm-content').value.trim();
+
+  if (!url) { alert('Page URL is required.'); return; }
+  if (!source) { alert('Campaign Source is required.'); return; }
+  if (!campaign) { alert('Campaign Name is required.'); return; }
+
+  var params = new URLSearchParams();
+  params.set('utm_source', source);
+  if (medium) params.set('utm_medium', medium);
+  params.set('utm_campaign', campaign);
+  if (term) params.set('utm_term', term);
+  if (content) params.set('utm_content', content);
+
+  var separator = url.includes('?') ? '&' : '?';
+  var result = url + separator + params.toString();
+
+  document.getElementById('utm-output').textContent = result;
+  document.getElementById('utm-result').style.display = 'block';
+});
+</script>

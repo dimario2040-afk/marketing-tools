@@ -1,0 +1,65 @@
+<div class="info-page">
+  <h1>Excel Macros for Marketing</h1>
+  <p>Ready-to-use VBA macros to automate repetitive marketing tasks in Excel.</p>
+
+  <h2>1. Clean URLs from Export</h2>
+  <p>Strips query parameters from URL lists except UTM tags you want to keep.</p>
+  <pre class="code-block">
+Sub CleanURLs()
+    Dim cell As Range
+    For Each cell In Selection
+        If cell.Value &lt;&gt; "" Then
+            Dim parts As Variant
+            parts = Split(cell.Value, "?")
+            cell.Value = parts(0)
+        End If
+    Next cell
+End Sub</pre>
+
+  <h2>2. Merge Campaign Data</h2>
+  <p>Combines rows from multiple sheets into one summary table.</p>
+  <pre class="code-block">
+Sub MergeSheets()
+    Dim ws As Worksheet, dest As Worksheet
+    Set dest = ThisWorkbook.Sheets("Summary")
+    For Each ws In ThisWorkbook.Sheets
+        If ws.Name &lt;&gt; "Summary" Then
+            ws.UsedRange.Copy dest.Cells(dest.Cells(dest.Rows.Count, 1).End(xlUp).Row + 1, 1)
+        End If
+    Next ws
+End Sub</pre>
+
+  <h2>3. Format Pivot Table</h2>
+  <p>Applies consistent formatting to all pivot tables in the workbook.</p>
+  <pre class="code-block">
+Sub FormatPivots()
+    Dim pt As PivotTable
+    For Each pt In ActiveSheet.PivotTables
+        pt.TableStyle2 = "PivotStyleMedium9"
+    Next pt
+End Sub</pre>
+
+  <p><strong>How to use:</strong> Press <kbd>Alt+F11</kbd> to open the VBA editor, insert a new module, paste the macro, and run it with <kbd>F5</kbd>.</p>
+</div>
+
+<style>
+.info-page { max-width: 720px; margin: 0 auto; }
+.info-page h1 { margin-bottom: 16px; }
+.info-page h2 { margin-top: 32px; margin-bottom: 8px; }
+.code-block {
+  background: #1e293b;
+  color: #e2e8f0;
+  padding: 16px;
+  border-radius: var(--radius-sm);
+  font-size: 0.8rem;
+  overflow-x: auto;
+  margin-bottom: 16px;
+}
+kbd {
+  background: var(--color-bg);
+  border: 1px solid var(--color-border);
+  border-radius: 4px;
+  padding: 1px 5px;
+  font-size: 0.8rem;
+}
+</style>

@@ -1,0 +1,8 @@
+<div class="error-page">
+  <h1>500</h1>
+  <p>Something went wrong.</p>
+  <% if (typeof error !== 'undefined' && error) { %>
+    <pre class="error-detail"><%= error %></pre>
+  <% } %>
+  <a href="/" class="btn btn--primary">Back to Home</a>
+</div>

@@ -1,0 +1,43 @@
+<div class="tool-page">
+  <h1>Character Counter</h1>
+  <p class="description">Count characters, words, sentences, and paragraphs in your text.</p>
+
+  <div class="tool-widget">
+    <div class="form-group">
+      <label>Your text</label>
+      <textarea id="cc-input" class="form-textarea auto-resize" rows="10" placeholder="Paste or type your text here…" autofocus></textarea>
+    </div>
+  </div>
+
+  <div class="tool-widget">
+    <div class="cc-stats">
+      <div class="cc-stat"><span class="cc-stat__value" id="cc-chars">0</span><span class="cc-stat__label">Characters</span></div>
+      <div class="cc-stat"><span class="cc-stat__value" id="cc-chars-no-space">0</span><span class="cc-stat__label">Chars (no space)</span></div>
+      <div class="cc-stat"><span class="cc-stat__value" id="cc-words">0</span><span class="cc-stat__label">Words</span></div>
+      <div class="cc-stat"><span class="cc-stat__value" id="cc-sentences">0</span><span class="cc-stat__label">Sentences</span></div>
+      <div class="cc-stat"><span class="cc-stat__value" id="cc-paragraphs">0</span><span class="cc-stat__label">Paragraphs</span></div>
+      <div class="cc-stat"><span class="cc-stat__value" id="cc-lines">0</span><span class="cc-stat__label">Lines</span></div>
+    </div>
+  </div>
+</div>
+
+<style>
+.cc-stats { display: flex; flex-wrap: wrap; gap: 16px; }
+.cc-stat { flex: 1; min-width: 100px; text-align: center; padding: 16px; background: var(--color-bg); border-radius: var(--radius-sm); }
+.cc-stat__value { display: block; font-size: 1.5rem; font-weight: 700; color: var(--color-primary); }
+.cc-stat__label { display: block; font-size: 0.75rem; color: var(--color-text-secondary); margin-top: 2px; }
+</style>
+
+<script>
+document.getElementById('cc-input').addEventListener('input', function () {
+  var text = this.value;
+  document.getElementById('cc-chars').textContent = text.length;
+  document.getElementById('cc-chars-no-space').textContent = text.replace(/\s/g, '').length;
+  document.getElementById('cc-words').textContent = text.trim() ? text.trim().split(/\s+/).length : 0;
+  document.getElementById('cc-sentences').textContent = text.split(/[.!?]+/).filter(Boolean).length;
+  document.getElementById('cc-paragraphs').textContent = text.split(/\n\s*\n/).filter(Boolean).length;
+  document.getElementById('cc-lines').textContent = text.split('\n').length;
+});
+// Trigger on load
+document.getElementById('cc-input').dispatchEvent(new Event('input'));
+</script>

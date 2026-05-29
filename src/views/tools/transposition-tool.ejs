@@ -1,0 +1,71 @@
+<div class="tool-page">
+  <h1>Transposition Tool</h1>
+  <p class="description">Transform text — reverse, shuffle, swap case, and more.</p>
+
+  <div class="tool-widget">
+    <div class="form-group">
+      <label>Input text</label>
+      <textarea id="trans-input" class="form-textarea" rows="6" placeholder="Enter text to transform…"></textarea>
+    </div>
+    <div class="form-group" style="max-width:250px;">
+      <label>Operation</label>
+      <select id="trans-operation" class="form-select">
+        <option value="reverse">Reverse text</option>
+        <option value="upper">UPPERCASE</option>
+        <option value="lower">lowercase</option>
+        <option value="capitalize">Capitalize Words</option>
+        <option value="swap-case">Swap cASE</option>
+        <option value="shuffle-lines">Shuffle lines</option>
+        <option value="reverse-lines">Reverse lines</option>
+        <option value="strip-spaces">Strip extra spaces</option>
+      </select>
+    </div>
+    <button class="btn btn--primary" id="trans-execute">Transform</button>
+  </div>
+
+  <div class="tool-widget" id="trans-result" style="display:none;">
+    <label>Result</label>
+    <div class="result-box" id="trans-output"></div>
+    <button class="btn btn--secondary btn--sm" data-copy="#trans-output" style="margin-top:8px;">📋 Copy</button>
+  </div>
+</div>
+
+<script>
+document.getElementById('trans-execute').addEventListener('click', function () {
+  var input = document.getElementById('trans-input').value;
+  var op = document.getElementById('trans-operation').value;
+  var output = document.getElementById('trans-output');
+  var resultDiv = document.getElementById('trans-result');
+  var result = input;
+
+  switch (op) {
+    case 'reverse':
+      result = input.split('').reverse().join('');
+      break;
+    case 'upper':
+      result = input.toUpperCase();
+      break;
+    case 'lower':
+      result = input.toLowerCase();
+      break;
+    case 'capitalize':
+      result = input.replace(/\b\w/g, function (c) { return c.toUpperCase(); });
+      break;
+    case 'swap-case':
+      result = input.replace(/[a-zA-Z]/g, function (c) { return c === c.toUpperCase() ? c.toLowerCase() : c.toUpperCase(); });
+      break;
+    case 'shuffle-lines':
+      result = input.split('\n').sort(function () { return Math.random() - 0.5; }).join('\n');
+      break;
+    case 'reverse-lines':
+      result = input.split('\n').reverse().join('\n');
+      break;
+    case 'strip-spaces':
+      result = input.replace(/  +/g, ' ').replace(/^\s+|\s+$/gm, '').trim();
+      break;
+  }
+
+  output.textContent = result;
+  resultDiv.style.display = 'block';
+});
+</script>

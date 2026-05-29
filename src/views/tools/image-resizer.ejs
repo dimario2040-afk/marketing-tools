@@ -1,0 +1,75 @@
+<div class="tool-page">
+  <h1>Image Resizer</h1>
+  <p class="description">Resize, crop, and convert images — supports JPEG, PNG, and WebP.</p>
+
+  <div class="tool-widget">
+    <div class="form-group">
+      <label>Upload image</label>
+      <input type="file" id="resize-file" class="form-input" accept="image/*">
+    </div>
+    <div class="tool-widget__row">
+      <div class="form-group">
+        <label>Width (px)</label>
+        <input type="number" id="resize-width" class="form-input" value="800" min="1" max="4000">
+      </div>
+      <div class="form-group">
+        <label>Height (px, 0 = auto)</label>
+        <input type="number" id="resize-height" class="form-input" value="0" min="0" max="4000">
+      </div>
+      <div class="form-group" style="max-width:150px;">
+        <label>Format</label>
+        <select id="resize-format" class="form-select">
+          <option value="jpeg">JPEG</option>
+          <option value="png">PNG</option>
+          <option value="webp">WebP</option>
+        </select>
+      </div>
+    </div>
+    <button class="btn btn--primary" id="resize-btn">Resize</button>
+  </div>
+
+  <div class="tool-widget" id="resize-result" style="display:none;">
+    <h3>Preview</h3>
+    <img id="resize-preview" class="img-preview" alt="Resized image">
+    <br>
+    <a id="resize-download" class="btn btn--secondary btn--sm" style="margin-top:12px;display:inline-flex;" download>⬇ Download</a>
+  </div>
+</div>
+
+<script>
+document.getElementById('resize-btn').addEventListener('click', async function () {
+  var fileInput = document.getElementById('resize-file');
+  if (!fileInput.files || !fileInput.files[0]) { alert('Select an image first.'); return; }
+
+  var form = new FormData();
+  form.append('image', fileInput.files[0]);
+  form.append('width', document.getElementById('resize-width').value);
+  form.append('height', document.getElementById('resize-height').value);
+  form.append('format', document.getElementById('resize-format').value);
+
+  var btn = this;
+  btn.textContent = 'Resizing…';
+  btn.disabled = true;
+
+  try {
+    var res = await fetch('/api/resize', { method: 'POST', body: form });
+    if (!res.ok) {
+      var err = await res.json();
+      alert('Error: ' + (err.error || 'Unknown'));
+      return;
+    }
+    var blob = await res.blob();
+    var url = URL.createObjectURL(blob);
+
+    document.getElementById('resize-preview').src = url;
+    document.getElementById('resize-download').href = url;
+    document.getElementById('resize-download').download = 'resized.' + (blob.type.split('/')[1] || 'jpg');
+    document.getElementById('resize-result').style.display = 'block';
+  } catch (e) {
+    alert('Error: ' + e.message);
+  } finally {
+    btn.textContent = 'Resize';
+    btn.disabled = false;
+  }
+});
+</script>

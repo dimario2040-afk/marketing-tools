@@ -1,0 +1,89 @@
+<div class="tool-page">
+  <h1>Creative Preview</h1>
+  <p class="description">Preview how your ad creative looks across different device sizes.</p>
+
+  <div class="tool-widget">
+    <div class="form-group">
+      <label>Page URL or HTML snippet</label>
+      <textarea id="preview-input" class="form-textarea" rows="4" placeholder="https://example.com or paste HTML"><h1 style="font-family:sans-serif;text-align:center;padding:40px 20px;">Your Ad Creative</h1>
+<p style="font-family:sans-serif;text-align:center;color:#666;">This is how it looks on different devices.</p></textarea>
+    </div>
+    <div style="display:flex;gap:8px;flex-wrap:wrap;">
+      <button class="btn btn--primary" id="preview-show">Show Preview</button>
+      <button class="btn btn--secondary" id="preview-clear">Clear</button>
+    </div>
+  </div>
+
+  <div id="preview-frames" style="display:none;">
+    <div class="tool-widget">
+      <h3>📱 Mobile (375 × 667)</h3>
+      <div class="device-frame device-mobile">
+        <iframe id="preview-mobile" class="preview-iframe" sandbox="allow-scripts allow-same-origin" loading="lazy"></iframe>
+      </div>
+    </div>
+
+    <div class="tool-widget">
+      <h3>📟 Tablet (768 × 1024)</h3>
+      <div class="device-frame device-tablet">
+        <iframe id="preview-tablet" class="preview-iframe" sandbox="allow-scripts allow-same-origin" loading="lazy"></iframe>
+      </div>
+    </div>
+
+    <div class="tool-widget">
+      <h3>🖥️ Desktop (1280 × 800)</h3>
+      <div class="device-frame device-desktop">
+        <iframe id="preview-desktop" class="preview-iframe" sandbox="allow-scripts allow-same-origin" loading="lazy"></iframe>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+.device-frame {
+  background: #fff;
+  border: 2px solid var(--color-border);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  margin-top: 8px;
+}
+
+.device-mobile  { max-width: 375px; min-height: 567px; }
+.device-tablet  { max-width: 768px; min-height: 924px; }
+.device-desktop { max-width: 1280px; min-height: 700px; }
+
+.preview-iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+  min-height: inherit;
+}
+</style>
+
+<script>
+document.getElementById('preview-show').addEventListener('click', function () {
+  var input = document.getElementById('preview-input').value.trim();
+  if (!input) { alert('Enter a URL or HTML.'); return; }
+
+  var isUrl = /^https?:\/\//i.test(input);
+  var frames = ['mobile', 'tablet', 'desktop'];
+
+  document.getElementById('preview-frames').style.display = 'block';
+
+  frames.forEach(function (id) {
+    var iframe = document.getElementById('preview-' + id);
+    if (isUrl) {
+      iframe.src = input;
+    } else {
+      iframe.srcdoc = input;
+    }
+  });
+});
+
+document.getElementById('preview-clear').addEventListener('click', function () {
+  document.getElementById('preview-input').value = '';
+  document.getElementById('preview-frames').style.display = 'none';
+  ['mobile', 'tablet', 'desktop'].forEach(function (id) {
+    document.getElementById('preview-' + id).srcdoc = '';
+  });
+});
+</script>

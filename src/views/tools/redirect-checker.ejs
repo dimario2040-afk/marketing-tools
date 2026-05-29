@@ -1,0 +1,77 @@
+<div class="tool-page">
+  <h1>Redirect Checker</h1>
+  <p class="description">Trace redirect chains and check HTTP status codes for any URL.</p>
+
+  <div class="tool-widget">
+    <div class="form-group">
+      <label>URL to check</label>
+      <input type="url" id="redirect-input" class="form-input" placeholder="https://example.com" required>
+    </div>
+    <button class="btn btn--primary" id="redirect-btn">Check Redirect</button>
+  </div>
+
+  <div class="tool-widget" id="redirect-result" style="display:none;">
+    <h3>Redirect Chain</h3>
+    <div id="redirect-chain"></div>
+    <div id="redirect-summary" style="margin-top:12px;padding-top:12px;border-top:1px solid var(--color-border);"></div>
+  </div>
+</div>
+
+<script>
+document.getElementById('redirect-btn').addEventListener('click', async function () {
+  var url = document.getElementById('redirect-input').value.trim();
+  if (!url) { alert('Enter a URL.'); return; }
+
+  var btn = this;
+  btn.textContent = 'Checking…';
+  btn.disabled = true;
+
+  try {
+    var res = await fetch('/api/redirect-check', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ url: url })
+    });
+    var data = await res.json();
+
+    if (!res.ok) {
+      alert('Error: ' + (data.error || 'Unknown'));
+      return;
+    }
+
+    var chainDiv = document.getElementById('redirect-chain');
+    var summaryDiv = document.getElementById('redirect-summary');
+    var html = '';
+
+    data.chain.forEach(function (step, i) {
+      var color = step.status >= 200 && step.status < 300 ? 'var(--color-success)' :
+                   step.status >= 300 && step.status < 400 ? 'var(--color-warning)' :
+                   step.status >= 400 ? 'var(--color-error)' : 'var(--color-text-secondary)';
+      html += '<div style="display:flex;align-items:center;gap:8px;padding:6px 0;border-bottom:1px solid var(--color-border);font-size:0.85rem;">';
+      html += '<span class="badge" style="background:' + color + '20;color:' + color + ';font-weight:600;">' + (step.status || 'ERR') + '</span>';
+      html += '<span>' + (i + 1) + '. ' + step.url.substring(0, 100) + '</span>';
+      if (step.error) html += '<span style="color:var(--color-error);font-size:0.75rem;">(' + step.error + ')</span>';
+      html += '</div>';
+    });
+
+    var finalColor = data.finalStatus >= 200 && data.finalStatus < 300 ? 'var(--color-success)' :
+                     data.finalStatus >= 400 ? 'var(--color-error)' : 'var(--color-text-secondary)';
+
+    chainDiv.innerHTML = html;
+    summaryDiv.innerHTML = '<strong>Final status:</strong> <span style="color:' + finalColor + ';">' +
+      (data.finalStatus || 'N/A') + '</span> &middot; <strong>Steps:</strong> ' + data.chain.length +
+      ' &middot; <strong>Final URL:</strong> <span style="word-break:break-all;">' + data.finalUrl.substring(0, 120) + '</span>';
+
+    document.getElementById('redirect-result').style.display = 'block';
+  } catch (e) {
+    alert('Error: ' + e.message);
+  } finally {
+    btn.textContent = 'Check Redirect';
+    btn.disabled = false;
+  }
+});
+
+document.getElementById('redirect-input').addEventListener('keydown', function (e) {
+  if (e.key === 'Enter') document.getElementById('redirect-btn').click();
+});
+</script>

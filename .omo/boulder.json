@@ -1,0 +1,35 @@
+{
+  "schema_version": 2,
+  "active_work_id": "marketing-tools-clone-5c6e66d4",
+  "works": {
+    "marketing-tools-clone-5c6e66d4": {
+      "work_id": "marketing-tools-clone-5c6e66d4",
+      "active_plan": "D:\\Разработка\\Marketing-tools\\.omo\\plans\\marketing-tools-clone.md",
+      "plan_name": "marketing-tools-clone",
+      "status": "active",
+      "started_at": "2026-05-29T19:26:09.040Z",
+      "updated_at": "2026-05-29T19:26:09.040Z",
+      "session_ids": [
+        "ses_18f84519effeJV8rQrjKNackcZ"
+      ],
+      "session_origins": {
+        "ses_18f84519effeJV8rQrjKNackcZ": "direct"
+      },
+      "agent": "sisyphus",
+      "task_sessions": {}
+    }
+  },
+  "active_plan": "D:\\Разработка\\Marketing-tools\\.omo\\plans\\marketing-tools-clone.md",
+  "started_at": "2026-05-29T19:26:09.040Z",
+  "status": "active",
+  "updated_at": "2026-05-29T19:26:09.040Z",
+  "session_ids": [
+    "ses_18f84519effeJV8rQrjKNackcZ"
+  ],
+  "session_origins": {
+    "ses_18f84519effeJV8rQrjKNackcZ": "direct"
+  },
+  "plan_name": "marketing-tools-clone",
+  "task_sessions": {},
+  "agent": "sisyphus"
+}

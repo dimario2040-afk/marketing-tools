@@ -1,0 +1,187 @@
+<nav class="navbar" role="navigation">
+  <div class="navbar__inner">
+    <a href="/" class="navbar__brand">Marketing Tools</a>
+
+    <button class="navbar__toggle" aria-label="Toggle menu" type="button">
+      <span></span><span></span><span></span>
+    </button>
+
+    <div class="navbar__menu">
+      <div class="navbar__dropdown">
+        <button class="navbar__link navbar__dropdown-trigger" type="button">
+          Tools ▾
+        </button>
+        <div class="navbar__dropdown-content">
+          <a href="/utm-builder" class="navbar__dropdown-item">UTM Builder</a>
+          <a href="/qr-generator" class="navbar__dropdown-item">QR Generator</a>
+          <a href="/url-shortener" class="navbar__dropdown-item">URL Shortener</a>
+          <a href="/diff-checker" class="navbar__dropdown-item">Diff Checker</a>
+          <a href="/encoder-decoder" class="navbar__dropdown-item">Encoder / Decoder</a>
+          <a href="/character-counter" class="navbar__dropdown-item">Character Counter</a>
+          <a href="/cyrillic-detector" class="navbar__dropdown-item">Cyrillic Detector</a>
+          <a href="/html-editor" class="navbar__dropdown-item">HTML Editor</a>
+          <a href="/email-validator" class="navbar__dropdown-item">Email Validator</a>
+          <a href="/phone-validator" class="navbar__dropdown-item">Phone Validator</a>
+          <a href="/transposition-tool" class="navbar__dropdown-item">Transposition Tool</a>
+          <a href="/image-resizer" class="navbar__dropdown-item">Image Resizer</a>
+          <a href="/redirect-checker" class="navbar__dropdown-item">Redirect Checker</a>
+          <a href="/creative-preview" class="navbar__dropdown-item">Creative Preview</a>
+          <a href="/vast-inspector" class="navbar__dropdown-item">VAST Inspector</a>
+        </div>
+      </div>
+
+      <a href="/macros" class="navbar__link">Excel Macros</a>
+      <a href="/dictionary" class="navbar__link">Dictionary</a>
+      <a href="/about" class="navbar__link">About</a>
+    </div>
+  </div>
+</nav>
+
+<style>
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: var(--nav-height);
+  background: var(--color-surface);
+  border-bottom: 1px solid var(--color-border);
+  z-index: 100;
+}
+
+.navbar__inner {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 var(--content-padding);
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.navbar__brand {
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: var(--color-primary);
+  text-decoration: none;
+}
+.navbar__brand:hover { text-decoration: none; color: var(--color-primary-hover); }
+
+.navbar__menu {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.navbar__link {
+  background: none;
+  border: none;
+  font-family: var(--font-family);
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--color-text-secondary);
+  padding: 8px 12px;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  text-decoration: none;
+  transition: background 0.15s, color 0.15s;
+}
+
+.navbar__link:hover {
+  background: var(--color-bg);
+  color: var(--color-text);
+  text-decoration: none;
+}
+
+/* Dropdown */
+.navbar__dropdown { position: relative; }
+
+.navbar__dropdown-content {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  min-width: 220px;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  box-shadow: var(--shadow-md);
+  padding: 6px 0;
+  z-index: 101;
+}
+
+.navbar__dropdown:hover .navbar__dropdown-content,
+.navbar__dropdown-content:hover {
+  display: block;
+}
+
+.navbar__dropdown-item {
+  display: block;
+  padding: 8px 14px;
+  font-size: 0.8rem;
+  color: var(--color-text);
+  text-decoration: none;
+  transition: background 0.1s;
+}
+
+.navbar__dropdown-item:hover {
+  background: var(--color-bg);
+  text-decoration: none;
+}
+
+/* Hamburger (hidden on desktop) */
+.navbar__toggle {
+  display: none;
+  flex-direction: column;
+  gap: 4px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+}
+
+.navbar__toggle span {
+  display: block;
+  width: 24px;
+  height: 2px;
+  background: var(--color-text);
+  border-radius: 2px;
+  transition: transform 0.2s;
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .navbar__toggle { display: flex; }
+  .navbar__menu {
+    display: none;
+    position: absolute;
+    top: var(--nav-height);
+    left: 0;
+    right: 0;
+    background: var(--color-surface);
+    border-bottom: 1px solid var(--color-border);
+    flex-direction: column;
+    padding: 8px 16px;
+    box-shadow: var(--shadow-md);
+  }
+  .navbar__menu.open { display: flex; }
+  .navbar__dropdown-content {
+    position: static;
+    box-shadow: none;
+    border: none;
+    padding-left: 12px;
+  }
+}
+</style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  var toggle = document.querySelector('.navbar__toggle');
+  var menu = document.querySelector('.navbar__menu');
+  if (toggle && menu) {
+    toggle.addEventListener('click', function() {
+      menu.classList.toggle('open');
+    });
+  }
+});
+</script>

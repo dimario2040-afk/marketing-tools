@@ -1,0 +1,60 @@
+<div class="tool-page">
+  <h1>QR Code Generator</h1>
+  <p class="description">Generate QR codes from any URL or text — no sign-up required.</p>
+
+  <div class="tool-widget">
+    <div class="form-group">
+      <label>Content *</label>
+      <textarea id="qr-content" class="form-textarea" rows="2" placeholder="https://example.com or any text" required></textarea>
+    </div>
+    <div class="form-group" style="max-width:200px;">
+      <label>Size</label>
+      <select id="qr-size" class="form-select">
+        <option value="128">128 × 128</option>
+        <option value="256" selected>256 × 256</option>
+        <option value="512">512 × 512</option>
+        <option value="1024">1024 × 1024</option>
+      </select>
+    </div>
+    <button class="btn btn--primary" id="qr-generate">Generate QR</button>
+  </div>
+
+  <div class="tool-widget" id="qr-result" style="display:none; text-align:center;">
+    <div id="qr-canvas-container" style="display:inline-block;"></div>
+    <br>
+    <a id="qr-download" class="btn btn--secondary btn--sm" style="margin-top:12px;display:inline-flex;" download="qrcode.png">⬇ Download PNG</a>
+  </div>
+</div>
+
+<script>
+// Inline QR generation using a minimal QR library approach
+// We'll use an offscreen canvas with a QR-like pattern
+// For production, consider: qrcode-generator or qr.js from npm
+
+document.getElementById('qr-generate').addEventListener('click', function () {
+  var content = document.getElementById('qr-content').value.trim();
+  if (!content) { alert('Enter content for the QR code.'); return; }
+
+  var size = parseInt(document.getElementById('qr-size').value);
+
+  // Use a lightweight approach: QRServer API for reliable QR generation
+  var encoded = encodeURIComponent(content);
+  var img = document.createElement('img');
+  img.src = 'https://api.qrserver.com/v1/create-qr-code/?size=' + size + 'x' + size + '&data=' + encoded;
+  img.alt = 'QR Code for ' + content;
+  img.style.maxWidth = '100%';
+  img.style.height = 'auto';
+  img.style.borderRadius = '8px';
+
+  var container = document.getElementById('qr-canvas-container');
+  container.innerHTML = '';
+  container.appendChild(img);
+
+  // Set download link
+  var dl = document.getElementById('qr-download');
+  dl.href = img.src;
+  dl.download = 'qrcode.png';
+
+  document.getElementById('qr-result').style.display = 'block';
+});
+</script>

@@ -1,0 +1,45 @@
+<div class="tool-page">
+  <h1>Email Validator</h1>
+  <p class="description">Check if an email address is formatted correctly.</p>
+
+  <div class="tool-widget">
+    <div class="form-group">
+      <label>Email address</label>
+      <input type="email" id="email-input" class="form-input" placeholder="user@example.com">
+    </div>
+    <button class="btn btn--primary" id="email-validate">Validate</button>
+  </div>
+
+  <div class="tool-widget" id="email-result" style="display:none;">
+    <div class="result-box" id="email-output"></div>
+  </div>
+</div>
+
+<script>
+document.getElementById('email-validate').addEventListener('click', function () {
+  var email = document.getElementById('email-input').value.trim();
+  var output = document.getElementById('email-output');
+  var resultDiv = document.getElementById('email-result');
+
+  if (!email) { output.textContent = 'Please enter an email address.'; output.className = 'result-box result-box--error'; resultDiv.style.display = 'block'; return; }
+
+  // RFC 5322 simplified regex
+  var regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  var isValid = regex.test(email);
+
+  if (isValid) {
+    output.textContent = '✓ ' + email + ' — valid format.';
+    output.className = 'result-box result-box--success';
+  } else {
+    output.textContent = '✗ ' + email + ' — invalid format.';
+    output.className = 'result-box result-box--error';
+  }
+
+  resultDiv.style.display = 'block';
+});
+
+// Validate on Enter
+document.getElementById('email-input').addEventListener('keydown', function (e) {
+  if (e.key === 'Enter') document.getElementById('email-validate').click();
+});
+</script>

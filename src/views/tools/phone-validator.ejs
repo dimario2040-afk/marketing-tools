@@ -1,0 +1,62 @@
+<div class="tool-page">
+  <h1>Phone Number Validator</h1>
+  <p class="description">Validate and format international phone numbers.</p>
+
+  <div class="tool-widget">
+    <div class="form-group">
+      <label>Phone number</label>
+      <input type="text" id="phone-input" class="form-input" placeholder="+1 (555) 123-4567">
+    </div>
+    <button class="btn btn--primary" id="phone-validate">Validate</button>
+  </div>
+
+  <div class="tool-widget" id="phone-result" style="display:none;">
+    <div class="result-box" id="phone-output"></div>
+  </div>
+</div>
+
+<script>
+document.getElementById('phone-validate').addEventListener('click', function () {
+  var phone = document.getElementById('phone-input').value.trim();
+  var output = document.getElementById('phone-output');
+  var resultDiv = document.getElementById('phone-result');
+
+  if (!phone) { output.textContent = 'Please enter a phone number.'; output.className = 'result-box result-box--error'; resultDiv.style.display = 'block'; return; }
+
+  // Strip common formatting characters for validation
+  var digits = phone.replace(/[\s\-\(\)\.\+]/g, '');
+  var hasPlus = phone.includes('+');
+
+  // Basic international format check
+  var isValid = false;
+  var message = '';
+
+  if (hasPlus) {
+    // E.164 format: + followed by country code and number
+    var e164 = phone.replace(/[\s\-\(\)]/g, '');
+    isValid = /^\+\d{7,15}$/.test(e164);
+    message = isValid
+      ? '✓ Valid international format (E.164).'
+      : '✗ Invalid international format. Expected +[country code][number] (7–15 digits).';
+  } else if (digits.length >= 7 && digits.length <= 15) {
+    isValid = true;
+    message = '✓ ' + digits.length + ' digits detected. Consider adding country code (e.g., +1 for US).';
+  } else {
+    message = '✗ Invalid number. Must have 7–15 digits.';
+  }
+
+  if (isValid) {
+    output.textContent = message;
+    output.className = 'result-box result-box--success';
+  } else {
+    output.textContent = message;
+    output.className = 'result-box result-box--error';
+  }
+
+  resultDiv.style.display = 'block';
+});
+
+document.getElementById('phone-input').addEventListener('keydown', function (e) {
+  if (e.key === 'Enter') document.getElementById('phone-validate').click();
+});
+</script>

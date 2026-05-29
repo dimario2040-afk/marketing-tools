@@ -1,0 +1,90 @@
+<div class="tool-page">
+  <h1>URL Shortener</h1>
+  <p class="description">Create short, shareable links from long URLs.</p>
+
+  <div class="tool-widget">
+    <div class="form-group">
+      <label>Long URL *</label>
+      <input type="url" id="shorten-input" class="form-input" placeholder="https://example.com/very/long/url?with=params" required>
+    </div>
+    <button class="btn btn--primary" id="shorten-btn">Shorten</button>
+  </div>
+
+  <div class="tool-widget" id="shorten-result" style="display:none;">
+    <label>Short URL</label>
+    <div class="short-url-display">
+      <span id="shorten-output"></span>
+      <button class="btn btn--secondary btn--sm" id="shorten-copy">📋 Copy</button>
+    </div>
+  </div>
+
+  <div class="tool-widget">
+    <h3>Recent Links</h3>
+    <div id="shorten-list" class="result-box" style="font-size:0.8rem;">
+      Loading…
+    </div>
+  </div>
+</div>
+
+<script>
+document.getElementById('shorten-btn').addEventListener('click', async function () {
+  var url = document.getElementById('shorten-input').value.trim();
+  if (!url) { alert('Enter a URL to shorten.'); return; }
+
+  var btn = this;
+  btn.textContent = 'Shortening…';
+  btn.disabled = true;
+
+  try {
+    var res = await fetch('/api/shorten', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ url: url })
+    });
+    var data = await res.json();
+    if (res.ok) {
+      document.getElementById('shorten-output').textContent = data.shortUrl;
+      document.getElementById('shorten-result').style.display = 'block';
+      loadLinks(); // Refresh list
+    } else {
+      alert('Error: ' + (data.error || 'Unknown error'));
+    }
+  } catch (e) {
+    alert('Network error: ' + e.message);
+  } finally {
+    btn.textContent = 'Shorten';
+    btn.disabled = false;
+  }
+});
+
+document.getElementById('shorten-copy').addEventListener('click', function () {
+  var text = document.getElementById('shorten-output').textContent;
+  navigator.clipboard.writeText(text).then(function () {
+    this.textContent = '✓ Copied!';
+    setTimeout(function () { this.textContent = '📋 Copy'; }.bind(this), 1500);
+  }.bind(this));
+});
+
+async function loadLinks() {
+  var list = document.getElementById('shorten-list');
+  try {
+    var res = await fetch('/api/links');
+    var links = await res.json();
+    if (links.length === 0) {
+      list.innerHTML = '<span style="color:var(--color-text-secondary);">No links yet.</span>';
+      return;
+    }
+    list.innerHTML = links.map(function (l) {
+      return '<div style="padding:6px 0;border-bottom:1px solid var(--color-border);">' +
+        '<strong>' + l.id + '</strong> → ' +
+        '<span style="color:var(--color-text-secondary);font-size:0.75rem;">' + l.originalUrl.substring(0, 60) + '…</span>' +
+        ' <span style="color:var(--color-text-secondary);font-size:0.7rem;">(' + (l.createdAt || '') + ')</span>' +
+        '</div>';
+    }).join('');
+  } catch (e) {
+    list.innerHTML = '<span style="color:var(--color-error);">Failed to load links.</span>';
+  }
+}
+
+loadLinks();
+</script>

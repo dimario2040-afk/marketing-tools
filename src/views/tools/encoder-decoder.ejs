@@ -1,0 +1,69 @@
+<div class="tool-page">
+  <h1>Encoder / Decoder</h1>
+  <p class="description">Encode or decode text between Base64, URL encoding, and HTML entities.</p>
+
+  <div class="tool-widget">
+    <div class="form-group">
+      <label>Input</label>
+      <textarea id="enc-input" class="form-textarea" rows="4" placeholder="Enter text to encode/decode…"></textarea>
+    </div>
+    <div class="form-group" style="max-width:200px;">
+      <label>Method</label>
+      <select id="enc-method" class="form-select">
+        <option value="base64-encode">Base64 Encode</option>
+        <option value="base64-decode">Base64 Decode</option>
+        <option value="url-encode">URL Encode</option>
+        <option value="url-decode">URL Decode</option>
+        <option value="html-encode">HTML Escape</option>
+        <option value="html-decode">HTML Unescape</option>
+      </select>
+    </div>
+    <button class="btn btn--primary" id="enc-execute">Execute</button>
+  </div>
+
+  <div class="tool-widget" id="enc-result" style="display:none;">
+    <label>Output</label>
+    <div class="result-box" id="enc-output"></div>
+    <button class="btn btn--secondary btn--sm" data-copy="#enc-output" style="margin-top:8px;">📋 Copy</button>
+  </div>
+</div>
+
+<script>
+document.getElementById('enc-execute').addEventListener('click', function () {
+  var input = document.getElementById('enc-input').value;
+  var method = document.getElementById('enc-method').value;
+  var output = document.getElementById('enc-output');
+  var resultDiv = document.getElementById('enc-result');
+  var result = '';
+
+  try {
+    switch (method) {
+      case 'base64-encode':
+        result = btoa(input);
+        break;
+      case 'base64-decode':
+        result = atob(input);
+        break;
+      case 'url-encode':
+        result = encodeURIComponent(input);
+        break;
+      case 'url-decode':
+        result = decodeURIComponent(input);
+        break;
+      case 'html-encode':
+        result = input.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#39;');
+        break;
+      case 'html-decode':
+        var ta = document.createElement('textarea');
+        ta.innerHTML = input;
+        result = ta.value;
+        break;
+    }
+  } catch (e) {
+    result = 'Error: ' + e.message;
+  }
+
+  output.textContent = result;
+  resultDiv.style.display = 'block';
+});
+</script>

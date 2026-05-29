@@ -1,0 +1,112 @@
+<div class="tool-page">
+  <h1>VAST Inspector</h1>
+  <p class="description">Parse and inspect VAST ad tags to verify your video ad configuration.</p>
+
+  <div class="tool-widget">
+    <div class="form-group">
+      <label>VAST XML</label>
+      <textarea id="vast-input" class="form-textarea" rows="10" placeholder='Paste VAST XML here, e.g.:
+<?xml version="1.0"?>
+<VAST version="2.0">
+  <Ad id="123">
+    <InLine>
+      <AdSystem>Test</AdSystem>
+      <AdTitle>Test Ad</AdTitle>
+      <Creatives>
+        <Creative>
+          <Linear>
+            <Duration>00:00:15</Duration>
+            <MediaFiles>
+              <MediaFile delivery="progressive" type="video/mp4" width="640" height="480">
+                https://example.com/ad.mp4
+              </MediaFile>
+            </MediaFiles>
+          </Linear>
+        </Creative>
+      </Creatives>
+    </InLine>
+  </Ad>
+</VAST>'></textarea>
+    </div>
+    <button class="btn btn--primary" id="vast-parse">Parse VAST</button>
+  </div>
+
+  <div class="tool-widget" id="vast-result" style="display:none;">
+    <h3>Parsed Information</h3>
+    <div id="vast-output" class="result-box" style="font-size:0.85rem;line-height:1.7;"></div>
+  </div>
+</div>
+
+<script>
+document.getElementById('vast-parse').addEventListener('click', function () {
+  var xml = document.getElementById('vast-input').value.trim();
+  var output = document.getElementById('vast-output');
+  var resultDiv = document.getElementById('vast-result');
+
+  if (!xml) { alert('Paste VAST XML to parse.'); return; }
+
+  try {
+    var parser = new DOMParser();
+    var doc = parser.parseFromString(xml, 'text/xml');
+
+    // Check for parse errors
+    var parseError = doc.querySelector('parsererror');
+    if (parseError) {
+      output.innerHTML = '<span style="color:var(--color-error);">✗ XML parse error: ' + parseError.textContent + '</span>';
+      resultDiv.style.display = 'block';
+      return;
+    }
+
+    var vastEl = doc.querySelector('VAST');
+    if (!vastEl) { output.textContent = '✗ No &lt;VAST&gt; element found.'; resultDiv.style.display = 'block'; return; }
+
+    var version = vastEl.getAttribute('version') || 'unknown';
+    var ads = doc.querySelectorAll('Ad');
+    var info = [];
+
+    info.push('✅ VAST version: ' + version);
+    info.push('Number of ads: ' + ads.length);
+
+    ads.forEach(function (ad, i) {
+      var adId = ad.getAttribute('id') || '(no id)';
+      var type = ad.querySelector('InLine') ? 'InLine' : ad.querySelector('Wrapper') ? 'Wrapper' : 'Unknown';
+      info.push('');
+      info.push('— Ad #' + (i + 1) + ' (id: ' + adId + ', type: ' + type + ')');
+
+      var system = ad.querySelector('AdSystem');
+      if (system) info.push('  AdSystem: ' + system.textContent);
+
+      var title = ad.querySelector('AdTitle');
+      if (title) info.push('  AdTitle: ' + title.textContent);
+
+      var duration = ad.querySelector('Duration');
+      if (duration) info.push('  Duration: ' + duration.textContent);
+
+      var mediaFiles = ad.querySelectorAll('MediaFile');
+      if (mediaFiles.length > 0) {
+        info.push('  MediaFiles (' + mediaFiles.length + '):');
+        mediaFiles.forEach(function (mf) {
+          var type = mf.getAttribute('type') || '?';
+          var w = mf.getAttribute('width') || '?';
+          var h = mf.getAttribute('height') || '?';
+          var url = mf.textContent.trim().substring(0, 80);
+          info.push('    · ' + type + ' ' + w + '×' + h + ' → ' + url + '…');
+        });
+      }
+
+      var impressions = ad.querySelectorAll('Impression');
+      if (impressions.length > 0) info.push('  Impressions: ' + impressions.length + ' URL(s)');
+
+      var clickThrough = ad.querySelector('ClickThrough');
+      if (clickThrough) info.push('  ClickThrough: ' + clickThrough.textContent.trim().substring(0, 80) + '…');
+    });
+
+    output.innerHTML = info.join('\n');
+    output.style.whiteSpace = 'pre-wrap';
+    resultDiv.style.display = 'block';
+  } catch (e) {
+    output.textContent = '✗ Error parsing VAST: ' + e.message;
+    resultDiv.style.display = 'block';
+  }
+});
+</script>
