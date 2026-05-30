@@ -18,44 +18,203 @@
 
   <div class="tool-widget" id="diff-result" style="display:none;">
     <h3><%= t('tools.diff_title') %></h3>
-    <pre class="result-box" id="diff-output" style="white-space:pre-wrap;font-family:monospace;font-size:0.8rem;"></pre>
+    <div class="result-box" id="diff-output"></div>
   </div>
 </div>
 
+<style>
+.diff-line {
+  padding: 2px 8px;
+  font-family: 'Roboto Mono', 'Cascadia Code', 'Consolas', monospace;
+  font-size: 0.8rem;
+  line-height: 1.6;
+  white-space: pre-wrap;
+  word-break: break-all;
+}
+.diff-line-equal { background: transparent; color: var(--color-text); }
+.diff-line-add  { background: rgba(40, 167, 69, 0.18); color: #2da44e; }
+.diff-line-del  { background: rgba(248, 81, 73, 0.18); color: #f85149; }
+.diff-line-equal .diff-gutter { color: var(--color-text-tertiary); }
+.diff-line-add  .diff-gutter { color: #2da44e; }
+.diff-line-del  .diff-gutter { color: #f85149; }
+.diff-gutter {
+  display: inline-block;
+  width: 2em;
+  text-align: right;
+  margin-right: 12px;
+  user-select: none;
+  opacity: 0.6;
+}
+.diff-inline-add { background: rgba(40, 167, 69, 0.35); border-radius: 2px; }
+.diff-inline-del { background: rgba(248, 81, 73, 0.35); border-radius: 2px; }
+.diff-empty { color: var(--color-text-tertiary); font-style: italic; }
+</style>
+
 <script>
+/**
+ * Myer's diff algorithm (simplified) – produces edit operations.
+ * Returns [{op:'equal'|'del'|'add', line:string}]
+ */
+function makeDiff(oldLines, newLines) {
+  var oldLen = oldLines.length, newLen = newLines.length;
+  var max = oldLen + newLen;
+  var v = { 1: 0 };
+  var vs = [{ 1: 0 }];
+  var found = false;
+
+  for (var d = 0; d <= max; d++) {
+    var nextV = {};
+    for (var k = -d; k <= d; k += 2) {
+      var x = (k === -d || (k !== d && v[k - 1] < v[k + 1]))
+        ? v[k + 1]
+        : v[k - 1] + 1;
+      var y = x - k;
+      while (x < oldLen && y < newLen && oldLines[x] === newLines[y]) { x++; y++; }
+      nextV[k] = x;
+      if (x >= oldLen && y >= newLen) { found = true; break; }
+    }
+    vs.push(nextV);
+    v = nextV;
+    if (found) break;
+  }
+
+  // Backtrack
+  var result = [];
+  var x = oldLen, y = newLen;
+  for (var d = vs.length - 1; d > 0; d--) {
+    var vPrev = vs[d - 1];
+    var k = x - y;
+    var prevK = (k === -d || (k !== d && vPrev[k - 1] < vPrev[k + 1]))
+      ? k + 1
+      : k - 1;
+    var prevX = vPrev[prevK];
+    var prevY = prevX - prevK;
+
+    while (x > prevX && y > prevY) {
+      result.push({ op: 'equal', line: oldLines[x - 1] });
+      x--; y--;
+    }
+    if (y > prevY) {
+      result.push({ op: 'add', line: newLines[y - 1] });
+      y--;
+    } else if (x > prevX) {
+      result.push({ op: 'del', line: oldLines[x - 1] });
+      x--;
+    }
+    x = prevX; y = prevY;
+  }
+  while (x > 0 && y > 0) {
+    result.push({ op: 'equal', line: oldLines[--x] });
+    y--;
+  }
+  while (y > 0) { result.push({ op: 'add', line: newLines[--y] }); }
+  while (x > 0) { result.push({ op: 'del', line: oldLines[--x] }); }
+
+  return result.reverse();
+}
+
+/** Character-level inline diff for two strings */
+function inlineDiff(oldStr, newStr) {
+  if (oldStr === newStr) return escapeHtml(newStr);
+  var oldChars = oldStr.split(''), newChars = newStr.split('');
+  var seq = [];
+  var lcs = longestCommonSubsequence(oldChars, newChars);
+  var oi = 0, ni = 0;
+  for (var i = 0; i < lcs.length; i++) {
+    while (oi < oldChars.length && oldChars[oi] !== lcs[i]) {
+      seq.push('<span class="diff-inline-del">' + escapeHtml(oldChars[oi]) + '</span>');
+      oi++;
+    }
+    while (ni < newChars.length && newChars[ni] !== lcs[i]) {
+      seq.push('<span class="diff-inline-add">' + escapeHtml(newChars[ni]) + '</span>');
+      ni++;
+    }
+    if (oi < oldChars.length && ni < newChars.length) {
+      seq.push(escapeHtml(lcs[i]));
+      oi++; ni++;
+    }
+  }
+  while (oi < oldChars.length) {
+    seq.push('<span class="diff-inline-del">' + escapeHtml(oldChars[oi]) + '</span>');
+    oi++;
+  }
+  while (ni < newChars.length) {
+    seq.push('<span class="diff-inline-add">' + escapeHtml(newChars[ni]) + '</span>');
+    ni++;
+  }
+  return seq.join('');
+}
+
+function longestCommonSubsequence(a, b) {
+  var m = a.length, n = b.length;
+  var dp = Array.from({ length: m + 1 }, function () { return new Array(n + 1).fill(0); });
+  for (var i = 1; i <= m; i++) {
+    for (var j = 1; j <= n; j++) {
+      if (a[i - 1] === b[j - 1]) dp[i][j] = dp[i - 1][j - 1] + 1;
+      else dp[i][j] = Math.max(dp[i - 1][j], dp[i][j - 1]);
+    }
+  }
+  var result = [];
+  var i = m, j = n;
+  while (i > 0 && j > 0) {
+    if (a[i - 1] === b[j - 1]) { result.unshift(a[i - 1]); i--; j--; }
+    else if (dp[i - 1][j] > dp[i][j - 1]) i--;
+    else j--;
+  }
+  return result;
+}
+
+function escapeHtml(str) {
+  return str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+}
+
 document.getElementById('diff-compare').addEventListener('click', function () {
   var a = document.getElementById('diff-a').value;
   var b = document.getElementById('diff-b').value;
   var out = document.getElementById('diff-output');
   var result = document.getElementById('diff-result');
+  result.style.display = 'block';
 
   if (a === b) {
-    out.textContent = '✓ Texts are identical.';
-    out.style.color = 'var(--color-success)';
-    result.style.display = 'block';
+    out.innerHTML = '<div class="diff-line diff-line-equal" style="padding:12px;text-align:center;opacity:0.7;">✓ Texts are identical.</div>';
     return;
   }
 
-  // Simple line-based diff
   var linesA = a.split('\n');
   var linesB = b.split('\n');
-  var maxLen = Math.max(linesA.length, linesB.length);
-  var output = [];
+  var ops = makeDiff(linesA, linesB);
+  var html = [];
+  var lineNum = 0;
 
-  for (var i = 0; i < maxLen; i++) {
-    var la = linesA[i] !== undefined ? linesA[i] : '';
-    var lb = linesB[i] !== undefined ? linesB[i] : '';
-    if (la === lb) {
-      output.push('  ' + la);
-    } else {
-      if (la) output.push('− ' + la);
-      if (lb) output.push('+ ' + lb);
+  for (var i = 0; i < ops.length; i++) {
+    var op = ops[i];
+    lineNum++;
+    var cls = 'diff-line';
+    var gutter = '';
+    var content = '';
+
+    if (op.op === 'equal') {
+      cls += ' diff-line-equal';
+      gutter = '<span class="diff-gutter">' + lineNum + '</span>';
+      content = escapeHtml(op.line);
+    } else if (op.op === 'add') {
+      cls += ' diff-line-add';
+      gutter = '<span class="diff-gutter">+</span>';
+      content = op.line === ''
+        ? '<span class="diff-empty">(empty line)</span>'
+        : inlineDiff('', op.line);
+    } else if (op.op === 'del') {
+      cls += ' diff-line-del';
+      gutter = '<span class="diff-gutter">−</span>';
+      content = op.line === ''
+        ? '<span class="diff-empty">(empty line)</span>'
+        : inlineDiff(op.line, '');
     }
+
+    html.push('<div class="' + cls + '">' + gutter + content + '</div>');
   }
 
-  out.textContent = output.join('\n');
-  out.style.color = 'inherit';
-  result.style.display = 'block';
+  out.innerHTML = html.join('');
 });
 
 document.getElementById('diff-swap').addEventListener('click', function () {
