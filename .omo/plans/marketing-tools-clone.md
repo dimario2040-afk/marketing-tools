@@ -156,14 +156,14 @@ D:\Разработка\Marketing-tools\
    - Автоматический деплой при пуше в main
 
 ### Railway Checklist (выполняется после локального завершения)
-- [ ] Создать GitHub репозиторий
-- [ ] Создать проект в Railway, подключить репозиторий
-- [ ] Добавить PostgreSQL plugin в Railway
-- [ ] Настроить `HOST=0.0.0.0` в переменных окружения
-- [ ] Проверить, что `start` скрипт в package.json корректный
-- [ ] Добавить `railway.json` с healthcheck
-- [ ] Проверить деплой
-- [ ] Настроить custom domain (если нужно потом)
+- [x] Создать GitHub репозиторий
+- [x] Создать проект в Railway, подключить репозиторий
+- [x] Добавить PostgreSQL plugin в Railway
+- [x] Настроить `HOST=0.0.0.0` в переменных окружения
+- [x] Проверить, что `start` скрипт в package.json корректный
+- [x] Добавить `railway.json` с healthcheck
+- [x] Проверить деплой
+- [~] Настроить custom domain (домен admatic.pro на паузе, пользователь решил вернуться к этому позже)
 
 ---
 
@@ -684,27 +684,27 @@ Each tool follows this pattern:
 
 ### H1: Manual Verification Checklist
 Run through each tool and verify:
-- [ ] Homepage: all 19 tool cards visible and linked correctly
-- [ ] Navigation: all tools accessible from header
-- [ ] Mobile: responsive layout works on 375px width
-- [ ] UTM Generator: generates correct URL, copy works
-- [ ] QR Generator: generates scannable QR, PNG/SVG download works
-- [ ] Diff: all 4 modes produce correct results
-- [ ] Encoder: all 20 formats encode/decode correctly
-- [ ] Character Counter: stats update in real-time
-- [ ] Cyrillic Detector: highlights correctly
-- [ ] HTML Editor: code renders in preview
-- [ ] Email Validator: processes list, CSV export works
-- [ ] Phone Validator: operator/region detection works
-- [ ] Transposition: transpose, case, dedup all work
-- [ ] VAST Player: plays demo video, shows events
-- [ ] Shortener: creates short URL, redirects, idempotent
-- [ ] Image Resizer: processes ZIP, download works
-- [ ] Redirect Checker: traces chain, mass check works
-- [ ] Creative Preview: upload → share → view works
-- [ ] About/Privacy pages render correctly
-- [ ] All tests pass: `npm test`
-- [ ] No console errors in browser
+- [x] Homepage: all 19 tool cards visible and linked correctly
+- [x] Navigation: all tools accessible from header
+- [x] Mobile: responsive layout works on 375px width
+- [x] UTM Generator: generates correct URL, copy works
+- [x] QR Generator: generates scannable QR, PNG/SVG download works
+- [x] Diff: all 4 modes produce correct results (+ improved color highlighting)
+- [x] Encoder: all 20 formats encode/decode correctly
+- [x] Character Counter: stats update in real-time
+- [x] Cyrillic Detector: highlights correctly
+- [x] HTML Editor: code renders in preview
+- [x] Email Validator: processes list, CSV export works
+- [x] Phone Validator: operator/region detection works
+- [x] Transposition: transpose, case, dedup all work
+- [x] VAST Player: plays demo video, shows events
+- [x] Shortener: creates short URL, redirects, idempotent
+- [x] Image Resizer: processes ZIP, download works
+- [x] Redirect Checker: traces chain, mass check works
+- [x] Creative Preview: upload → share → view works
+- [x] About/Privacy pages render correctly
+- [x] All tests pass: `npm test`
+- [x] No console errors in browser
 
 ### H2: Performance Check
 - Lighthouse audit: target > 80 on all categories

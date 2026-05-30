@@ -6,9 +6,9 @@
       "work_id": "marketing-tools-clone-5c6e66d4",
       "active_plan": "D:\\Разработка\\Marketing-tools\\.omo\\plans\\marketing-tools-clone.md",
       "plan_name": "marketing-tools-clone",
-      "status": "active",
+      "status": "completed",
       "started_at": "2026-05-29T19:26:09.040Z",
-      "updated_at": "2026-05-29T19:26:09.040Z",
+      "updated_at": "2026-05-30T10:15:02.697Z",
       "session_ids": [
         "ses_18f84519effeJV8rQrjKNackcZ"
       ],
@@ -16,13 +16,15 @@
         "ses_18f84519effeJV8rQrjKNackcZ": "direct"
       },
       "agent": "sisyphus",
-      "task_sessions": {}
+      "task_sessions": {},
+      "ended_at": "2026-05-30T10:15:02.692Z",
+      "elapsed_ms": 53333652
     }
   },
   "active_plan": "D:\\Разработка\\Marketing-tools\\.omo\\plans\\marketing-tools-clone.md",
   "started_at": "2026-05-29T19:26:09.040Z",
-  "status": "active",
-  "updated_at": "2026-05-29T19:26:09.040Z",
+  "status": "completed",
+  "updated_at": "2026-05-30T10:15:02.697Z",
   "session_ids": [
     "ses_18f84519effeJV8rQrjKNackcZ"
   ],
@@ -31,5 +33,7 @@
   },
   "plan_name": "marketing-tools-clone",
   "task_sessions": {},
-  "agent": "sisyphus"
+  "agent": "sisyphus",
+  "ended_at": "2026-05-30T10:15:02.692Z",
+  "elapsed_ms": 53333652
 }
