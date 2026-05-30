@@ -1,7 +1,7 @@
 {
-  "name": "marketing-tools",
+  "name": "admatic",
   "version": "1.0.0",
-  "description": "Marketing tools web app — UTM builder, QR generator, URL shortener, and more",
+  "description": "AdMatic — UTM builder, QR generator, URL shortener, and more",
   "main": "src/server.js",
   "scripts": {
     "start": "node src/server.js",
