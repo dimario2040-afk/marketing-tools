@@ -24,7 +24,7 @@
     "preview": "Preview"
   },
   "nav": {
-    "brand": "Marketing Tools",
+    "brand": "AdMatic",
     "tools": "Tools ▾",
     "excel": "Excel Macros",
     "dictionary": "Dictionary",
@@ -96,8 +96,8 @@
     "read_guide": "Read guide →"
   },
   "about": {
-    "title": "About Marketing Tools",
-    "p1": "Marketing Tools is a collection of free online utilities built for digital marketers, SEO specialists, and content creators. Every tool is designed to solve a real-world task — from building UTM links to validating email lists.",
+    "title": "About AdMatic",
+    "p1": "AdMatic is a collection of free online utilities built for digital marketers, SEO specialists, and content creators. Every tool is designed to solve a real-world task — from building UTM links to validating email lists.",
     "why_title": "Why these tools?",
     "why_text": "We noticed that marketers often jump between a dozen browser tabs to get simple things done. This site brings the most commonly needed utilities together in one place, with no sign-ups, no ads, and no data collection.",
     "what_title": "What's here",
@@ -113,7 +113,7 @@
     "title": "Privacy Policy",
     "updated": "Last updated: May 2026",
     "collect_title": "Data Collection",
-    "collect_text": "Marketing Tools does not collect, store, or share any personal data. All tool processing happens locally in your browser or on the server without logging input content.",
+    "collect_text": "AdMatic does not collect, store, or share any personal data. All tool processing happens locally in your browser or on the server without logging input content.",
     "cookies_title": "Cookies",
     "cookies_text": "We do not use tracking cookies, analytics scripts, or third-party embeds. A minimal session cookie may be set by the server for technical operation only.",
     "third_title": "Third-Party Services",
@@ -449,6 +449,6 @@
     "copyright": "Free online tools for marketers."
   },
   "meta": {
-    "description": "Free online marketing tools: UTM builder, QR generator, URL shortener, diff checker, and more."
+    "description": "AdMatic — free online marketing tools: UTM builder, QR generator, URL shortener, diff checker, and more."
   }
 }
