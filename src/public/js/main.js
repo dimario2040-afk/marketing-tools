@@ -1,5 +1,5 @@
 /**
- * Marketing Tools — shared client utilities
+ * AdMatic — shared client utilities
  */
 
 document.addEventListener('DOMContentLoaded', function () {

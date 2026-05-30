@@ -4,7 +4,7 @@ const router = Router();
 
 // ─── Homepage ───────────────────────────────────────────────
 router.get('/', (req, res) => {
-  res.render('index', { title: 'Marketing Tools' });
+  res.render('index');
 });
 
 // ─── Info pages ─────────────────────────────────────────────

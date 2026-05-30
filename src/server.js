@@ -15,7 +15,7 @@ async function main() {
   }
 
   const server = app.listen(PORT, HOST, () => {
-    console.log(`Marketing Tools running on http://${HOST}:${PORT}`);
+    console.log(`AdMatic running on http://${HOST}:${PORT}`);
   });
 
   process.on('SIGTERM', () => {

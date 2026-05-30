@@ -6,7 +6,7 @@ describe('GET /', () => {
   it('returns 200 and renders the homepage', async () => {
     const res = await request(app).get('/');
     expect(res.status).toBe(200);
-    expect(res.text).toContain('Marketing Tools');
+    expect(res.text).toContain('AdMatic');
   });
 });
 
