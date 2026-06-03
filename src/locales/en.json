@@ -222,7 +222,7 @@
     },
     "cvr": {
       "brief": "The percentage of users who completed a desired action out of total visitors.",
-      "desc": "Conversion Rate (CVR) measures how effectively your funnel turns visitors into leads or customers. A conversion can be a purchase, a form submission, a sign-up, or any defined goal. E-commerce sites average 2-5% CVR, while B2B landing pages might convert at 10-20%. Optimising CVR (CRO) involves testing page layout, copy, form fields, load speed, and trust signals.",
+      "desc": "Conversion Rate (CR or CVR) measures how effectively your funnel turns visitors into leads or customers. A conversion can be a purchase, a form submission, a sign-up, or any defined goal. E-commerce sites average 2-5% CVR, while B2B landing pages might convert at 10-20%. Optimising CVR (CRO) involves testing page layout, copy, form fields, load speed, and trust signals.",
       "examples": [
         "\"Our checkout page has a 3.2% CVR, but adding trust badges should push it past 4%.\"",
         "\"The landing page CVR is 12% for desktop but only 3% on mobile — we need to fix the mobile form.\""
