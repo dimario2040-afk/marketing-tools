@@ -1,4 +1,25 @@
 <div class="info-page">
+  <script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@graph": [
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "item": { "@id": "https://admatic.pro", "name": "AdMatic" } },
+          { "@type": "ListItem", "position": 2, "item": { "@id": "https://admatic.pro/about", "name": "About" } }
+        ]
+      },
+      {
+        "@type": "AboutPage",
+        "@id": "https://admatic.pro/about",
+        "name": "About AdMatic",
+        "description": "<%= t('about.p1').replace(/"/g, '&quot;') %>",
+        "author": { "@type": "Person", "name": "Dmitriy Pechenkin" }
+      }
+    ]
+  }
+  </script>
   <h1><%= t('about.title') %></h1>
   <p><%= t('about.p1') %></p>
 

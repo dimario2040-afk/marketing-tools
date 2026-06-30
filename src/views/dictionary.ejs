@@ -1,4 +1,25 @@
 <div class="glossary">
+  <script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@graph": [
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "item": { "@id": "https://admatic.pro", "name": "AdMatic" } },
+          { "@type": "ListItem", "position": 2, "item": { "@id": "https://admatic.pro/dictionary", "name": "Marketing Dictionary" } }
+        ]
+      },
+      {
+        "@type": "Article",
+        "@id": "https://admatic.pro/dictionary",
+        "headline": "Marketing Dictionary",
+        "text": "Glossary of digital-marketing terms and acronyms explained.",
+        "author": { "@type": "Person", "name": "Dmitriy Pechenkin" }
+      }
+    ]
+  }
+  </script>
   <h1 class="glossary__title"><%= t('dictionary.title') %></h1>
   <p class="glossary__intro"><%= t('dictionary.intro') %></p>
 
@@ -52,3 +73,4 @@
     </details>
   <% }); %>
 </div>
+<script src="/js/glossary.js"></script>

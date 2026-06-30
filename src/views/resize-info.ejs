@@ -1,7 +1,27 @@
 <div class="info-page">
+  <script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@graph": [
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "item": { "@id": "https://admatic.pro", "name": "AdMatic" } },
+          { "@type": "ListItem", "position": 2, "item": { "@id": "https://admatic.pro/resize", "name": "Image Resize Guide" } }
+        ]
+      },
+      {
+        "@type": "Article",
+        "@id": "https://admatic.pro/resize",
+        "headline": "Image Resize Guide",
+        "text": "Recommended image dimensions for social networks and digital ads per platform.",
+        "author": { "@type": "Person", "name": "Dmitriy Pechenkin" }
+      }
+    ]
+  }
+  </script>
   <h1><%= t('resize_guide.title') %></h1>
   <p><%= t('resize_guide.intro') %></p>
-
   <h2><%= t('resize_guide.social_title') %></h2>
   <table class="guide-table">
     <thead>
@@ -22,7 +42,6 @@
       <tr><td>Pinterest</td><td>Pin</td><td>1000 × 1500</td></tr>
     </tbody>
   </table>
-
   <h2><%= t('resize_guide.ads_title') %></h2>
   <table class="guide-table">
     <thead>
@@ -37,10 +56,8 @@
       <tr><td>Billboard</td><td>970 × 250</td></tr>
     </tbody>
   </table>
-
   <p class="note"><%= t('resize_guide.note') %></p>
 </div>
-
 <style>
 .info-page { max-width: 720px; margin: 0 auto; }
 .info-page h1 { margin-bottom: 16px; }

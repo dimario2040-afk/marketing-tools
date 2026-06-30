@@ -1,7 +1,27 @@
 <div class="info-page">
+  <script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@graph": [
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "item": { "@id": "https://admatic.pro", "name": "AdMatic" } },
+          { "@type": "ListItem", "position": 2, "item": { "@id": "https://admatic.pro/video-editor", "name": "Video Editor Tools" } }
+        ]
+      },
+      {
+        "@type": "Article",
+        "@id": "https://admatic.pro/video-editor",
+        "headline": "Video Editor Tools",
+        "text": "Comparison of free and paid video editors for marketers.",
+        "author": { "@type": "Person", "name": "Dmitriy Pechenkin" }
+      }
+    ]
+  }
+  </script>
   <h1><%= t('video_info.title') %></h1>
   <p><%= t('video_info.intro') %></p>
-
   <h2><%= t('video_info.free_title') %></h2>
   <table class="guide-table">
     <thead>
@@ -15,7 +35,6 @@
       <tr><td>OpenShot</td><td>Win / Mac / Linux</td><td>Simple timeline-based editing</td></tr>
     </tbody>
   </table>
-
   <h2><%= t('video_info.paid_title') %></h2>
   <table class="guide-table">
     <thead>
@@ -28,7 +47,6 @@
       <tr><td>Canva Video</td><td>$13/mo</td><td>Quick social media videos with templates</td></tr>
     </tbody>
   </table>
-
   <h2><%= t('video_info.tips_title') %></h2>
   <ul>
     <li><%= t('video_info.tips_aspect') %></li>
@@ -37,7 +55,6 @@
     <li><%= t('video_info.tips_subtitles') %></li>
   </ul>
 </div>
-
 <style>
 .info-page { max-width: 720px; margin: 0 auto; }
 .info-page h1 { margin-bottom: 16px; }
