@@ -1,202 +1,52 @@
-<nav class="navbar" role="navigation">
-  <div class="navbar__inner">
-    <a href="/" class="navbar__brand"><%= t('nav.brand') %></a>
-
-    <button class="navbar__toggle" aria-label="Toggle menu" type="button">
-      <span></span><span></span><span></span>
-    </button>
-
-    <div class="navbar__menu">
-      <div class="navbar__dropdown">
-        <button class="navbar__link navbar__dropdown-trigger" type="button">
-          <%= t('nav.tools') %>
-        </button>
-        <div class="navbar__dropdown-content">
-          <a href="/utm-builder" class="navbar__dropdown-item"><%= t('nav.tool_utm') %></a>
-          <a href="/qr-generator" class="navbar__dropdown-item"><%= t('nav.tool_qr') %></a>
-          <a href="/url-shortener" class="navbar__dropdown-item"><%= t('nav.tool_shortener') %></a>
-          <a href="/diff-checker" class="navbar__dropdown-item"><%= t('nav.tool_diff') %></a>
-          <a href="/encoder-decoder" class="navbar__dropdown-item"><%= t('nav.tool_encoder') %></a>
-          <a href="/character-counter" class="navbar__dropdown-item"><%= t('nav.tool_counter') %></a>
-          <a href="/cyrillic-detector" class="navbar__dropdown-item"><%= t('nav.tool_cyrillic') %></a>
-          <a href="/html-editor" class="navbar__dropdown-item"><%= t('nav.tool_html') %></a>
-          <a href="/email-validator" class="navbar__dropdown-item"><%= t('nav.tool_email') %></a>
-          <a href="/phone-validator" class="navbar__dropdown-item"><%= t('nav.tool_phone') %></a>
-          <a href="/transposition-tool" class="navbar__dropdown-item"><%= t('nav.tool_transpose') %></a>
-          <a href="/image-resizer" class="navbar__dropdown-item"><%= t('nav.tool_resizer') %></a>
-          <a href="/redirect-checker" class="navbar__dropdown-item"><%= t('nav.tool_redirect') %></a>
-          <a href="/creative-preview" class="navbar__dropdown-item"><%= t('nav.tool_preview') %></a>
-          <a href="/vast-inspector" class="navbar__dropdown-item"><%= t('nav.tool_vast') %></a>
-        </div>
+<header id="header">
+  <div class="wrap nav">
+    <a class="logo" href="/"><span class="mark">A</span>admatic<b>.pro</b></a>
+    <div class="nav-right">
+      <nav class="menu" id="menu">
+        <a href="/#url"><%= t('nav.menu_url') %></a>
+        <a href="/#text"><%= t('nav.menu_text') %></a>
+        <a href="/#validation"><%= t('nav.menu_val') %></a>
+        <a href="/#media"><%= t('nav.menu_media') %></a>
+        <a href="/#guides"><%= t('nav.menu_guide') %></a>
+        <a href="/dictionary"><%= t('nav.dictionary') %></a>
+        <a href="/about"><%= t('nav.about') %></a>
+      </nav>
+      <div class="lang" role="tablist" aria-label="Language">
+        <a href="?lang=en" class="<%= lang === 'en' ? 'active' : '' %>" role="tab" aria-pressed="<%= lang === 'en' %>"><span class="fl">🇬🇧</span><span class="lb">EN</span></a>
+        <a href="?lang=ru" class="<%= lang === 'ru' ? 'active' : '' %>" role="tab" aria-pressed="<%= lang === 'ru' %>"><span class="fl">🇷🇺</span><span class="lb">RU</span></a>
       </div>
-
-      <a href="/macros" class="navbar__link"><%= t('nav.excel') %></a>
-      <a href="/dictionary" class="navbar__link"><%= t('nav.dictionary') %></a>
-      <a href="/about" class="navbar__link"><%= t('nav.about') %></a>
-      <a href="?lang=<%= lang === 'ru' ? 'en' : 'ru' %>" class="navbar__link navbar__lang"><%= t('nav.switch_lang') %></a>
+      <button class="burger" aria-label="Toggle menu"><span></span><span></span><span></span></button>
     </div>
   </div>
-</nav>
+</header>
 
 <style>
-/* ... existing styles plus: */
-.navbar__lang {
-  border: 1px solid var(--color-border);
-  border-radius: 100px;
-  padding: 4px 12px;
-  font-size: 0.75rem;
-  font-weight: 600;
+header{position:fixed;inset:0 0 auto;z-index:50;border-bottom:1px solid transparent;transition:.35s}
+header.scrolled{background:rgba(5,11,22,.85);backdrop-filter:blur(12px);border-color:var(--color-border)}
+.nav{display:flex;align-items:center;justify-content:space-between;height:var(--nav-height);gap:18px;max-width:var(--max-width);margin:0 auto;padding:0 var(--content-padding)}
+.logo{display:flex;align-items:center;gap:12px;font-weight:800;font-size:16px;letter-spacing:.04em;flex-shrink:0;color:var(--color-text)}
+.logo b{color:var(--color-primary)}
+.mark{width:34px;height:34px;border-radius:9px;display:grid;place-items:center;font-size:15px;font-weight:800;color:#fff;background:var(--gradient-red);box-shadow:0 0 18px rgba(255,43,58,.5)}
+.nav-right{display:flex;align-items:center;gap:18px}
+.menu{display:flex;gap:26px;font-size:11px;font-weight:700;letter-spacing:.16em;text-transform:uppercase}
+.menu a{position:relative;color:var(--color-text-secondary);transition:color .25s}
+.menu a::after{content:"";position:absolute;left:0;bottom:-6px;width:0;height:2px;background:var(--color-primary);transition:width .3s}
+.menu a:hover{color:var(--color-text)}.menu a:hover::after{width:100%}
+.lang{display:flex;border:1px solid var(--color-border);border-radius:100px;padding:4px;background:rgba(8,17,32,.7);backdrop-filter:blur(6px)}
+.lang a{text-decoration:none;border:0;background:transparent;color:var(--color-text-secondary);font-family:var(--font-display);font-size:11px;font-weight:700;letter-spacing:.1em;padding:7px 14px;border-radius:100px;cursor:pointer;transition:all .25s;display:flex;align-items:center;gap:7px;white-space:nowrap}
+.lang a .fl{font-size:13px;filter:grayscale(.3);transition:filter .25s}
+.lang a.active{background:var(--gradient-red);color:#fff;box-shadow:0 4px 14px rgba(255,43,58,.4)}
+.lang a.active .fl{filter:none}
+.lang a:hover:not(.active){color:var(--color-text)}
+.burger{display:none;background:none;border:0;cursor:pointer;z-index:60}
+.burger span{display:block;width:26px;height:2px;background:var(--color-text);margin:6px 0;transition:.3s}
+body.menu-open .burger span:nth-child(1){transform:translateY(8px) rotate(45deg)}body.menu-open .burger span:nth-child(2){opacity:0}body.menu-open .burger span:nth-child(3){transform:translateY(-8px) rotate(-45deg)}
+@media(max-width:960px){
+  .burger{display:block}
+  .menu{display:none;position:absolute;top:var(--nav-height);left:0;right:0;flex-direction:column;align-items:stretch;gap:0;background:rgba(5,11,22,.97);backdrop-filter:blur(14px);border-bottom:1px solid var(--color-border);padding:10px var(--content-padding) 18px}
+  .menu a{padding:14px 6px;font-size:12px;border-bottom:1px solid rgba(160,200,255,.08)}
+  .menu a:last-child{border-bottom:0}
+  body.menu-open .menu{display:flex}
 }
-@media (max-width: 768px) {
-  .navbar__lang { border: none; padding: 8px 12px; }
-}
+@media(min-width:961px){.menu{display:flex}}
 </style>
-
-<style>
-.navbar {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: var(--nav-height);
-  background: var(--color-surface);
-  border-bottom: 1px solid var(--color-border);
-  z-index: 100;
-}
-
-.navbar__inner {
-  max-width: var(--max-width);
-  margin: 0 auto;
-  padding: 0 var(--content-padding);
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.navbar__brand {
-  font-size: 1.125rem;
-  font-weight: 700;
-  color: var(--color-primary);
-  text-decoration: none;
-}
-.navbar__brand:hover { text-decoration: none; color: var(--color-primary-hover); }
-
-.navbar__menu {
-  display: flex;
-  align-items: center;
-  gap: 4px;
-}
-
-.navbar__link {
-  background: none;
-  border: none;
-  font-family: var(--font-family);
-  font-size: 0.875rem;
-  font-weight: 500;
-  color: var(--color-text-secondary);
-  padding: 8px 12px;
-  border-radius: var(--radius-sm);
-  cursor: pointer;
-  text-decoration: none;
-  transition: background 0.15s, color 0.15s;
-}
-
-.navbar__link:hover {
-  background: var(--color-bg);
-  color: var(--color-text);
-  text-decoration: none;
-}
-
-/* Dropdown */
-.navbar__dropdown { position: relative; }
-
-.navbar__dropdown-content {
-  display: none;
-  position: absolute;
-  top: 100%;
-  left: 0;
-  min-width: 220px;
-  background: var(--color-surface);
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-sm);
-  box-shadow: var(--shadow-md);
-  padding: 6px 0;
-  z-index: 101;
-}
-
-.navbar__dropdown:hover .navbar__dropdown-content,
-.navbar__dropdown-content:hover {
-  display: block;
-}
-
-.navbar__dropdown-item {
-  display: block;
-  padding: 8px 14px;
-  font-size: 0.8rem;
-  color: var(--color-text);
-  text-decoration: none;
-  transition: background 0.1s;
-}
-
-.navbar__dropdown-item:hover {
-  background: var(--color-bg);
-  text-decoration: none;
-}
-
-/* Hamburger (hidden on desktop) */
-.navbar__toggle {
-  display: none;
-  flex-direction: column;
-  gap: 4px;
-  background: none;
-  border: none;
-  cursor: pointer;
-  padding: 4px;
-}
-
-.navbar__toggle span {
-  display: block;
-  width: 24px;
-  height: 2px;
-  background: var(--color-text);
-  border-radius: 2px;
-  transition: transform 0.2s;
-}
-
-/* Mobile */
-@media (max-width: 768px) {
-  .navbar__toggle { display: flex; }
-  .navbar__menu {
-    display: none;
-    position: absolute;
-    top: var(--nav-height);
-    left: 0;
-    right: 0;
-    background: var(--color-surface);
-    border-bottom: 1px solid var(--color-border);
-    flex-direction: column;
-    padding: 8px 16px;
-    box-shadow: var(--shadow-md);
-  }
-  .navbar__menu.open { display: flex; }
-  .navbar__dropdown-content {
-    position: static;
-    box-shadow: none;
-    border: none;
-    padding-left: 12px;
-  }
-}
-</style>
-
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-  var toggle = document.querySelector('.navbar__toggle');
-  var menu = document.querySelector('.navbar__menu');
-  if (toggle && menu) {
-    toggle.addEventListener('click', function() {
-      menu.classList.toggle('open');
-    });
-  }
-});
-</script>

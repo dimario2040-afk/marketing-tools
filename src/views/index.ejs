@@ -7,190 +7,293 @@
   ]
 }
 </script>
-<section class="hero">
-  <h1><%= t('home.title') %></h1>
-  <p class="hero__sub"><%= t('home.subtitle') %></p>
+
+<section id="hero">
+  <canvas id="plexus"></canvas>
+  <div class="wrap hero-grid">
+    <div>
+      <span class="badge reveal in"><i></i><span><%= t('home.badge') %></span></span>
+      <h1><span><%= t('home.hero_h1a') %></span><br><span class="row2"><%= t('home.hero_h1b') %></span></h1>
+      <p class="hero-sub"><%- t('home.hero_sub') %></p>
+      <div class="search reveal in">
+        <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.5" y2="16.5"/></svg>
+        <input id="toolSearch" type="text" placeholder="<%= t('home.search_ph') %>" autocomplete="off">
+      </div>
+      <div class="hero-btns">
+        <a href="#url" class="btn btn-red magnetic"><span><%= t('home.cta_tools') %></span> <span class="ar">↓</span></a>
+        <a href="#playground" class="btn btn-ghost magnetic"><%= t('home.cta_demo') %></a>
+      </div>
+      <div class="stats">
+        <div class="stat"><div class="num" data-count="19">0</div><p><%= t('home.stat_tools') %></p></div>
+        <div class="stat"><div class="num" data-count="5">0</div><p><%= t('home.stat_cats') %></p></div>
+        <div class="stat"><div class="num" data-count="100" data-suffix="%">0</div><p><%= t('home.stat_free') %></p></div>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="cluster-wrap" data-depth="36">
+        <div class="cluster">
+          <svg viewBox="0 0 340 380">
+            <line x1="170" y1="190" x2="170" y2="58"/><line x1="170" y1="190" x2="284" y2="124"/>
+            <line x1="170" y1="190" x2="284" y2="256"/><line x1="170" y1="190" x2="170" y2="322"/>
+            <line x1="170" y1="190" x2="56" y2="256"/><line x1="170" y1="190" x2="56" y2="124"/>
+            <line x1="170" y1="58" x2="284" y2="124"/><line x1="284" y1="124" x2="284" y2="256"/>
+            <line x1="284" y1="256" x2="170" y2="322"/><line x1="170" y1="322" x2="56" y2="256"/>
+            <line x1="56" y1="256" x2="56" y2="124"/><line x1="56" y1="124" x2="170" y2="58"/>
+          </svg>
+          <div class="node core" style="left:170px;top:190px">A</div>
+          <div class="node" style="left:170px;top:58px">🔗</div>
+          <div class="node" style="left:284px;top:124px">✂️</div>
+          <div class="node" style="left:284px;top:256px">📝</div>
+          <div class="node" style="left:170px;top:322px">🎬</div>
+          <div class="node" style="left:56px;top:256px">🖼️</div>
+          <div class="node" style="left:56px;top:124px">🔢</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="scroll-hint"><%= t('home.scroll') %></div>
 </section>
 
-<section class="tool-category">
-  <h2><%= t('home.cat_url') %></h2>
-  <div class="tool-grid">
-    <a href="/utm-builder" class="tool-card">
-      <div class="tool-card__icon">🔗</div>
-      <div class="tool-card__title"><%= t('home.tool_utm_name') %></div>
-      <div class="tool-card__desc"><%= t('home.tool_utm_desc') %></div>
-      <span class="tool-card__link"><%= t('home.open_tool') %></span>
-    </a>
+<div class="marquee"><div class="mq-track">
+  <span><%- t('home.mq') %></span>
+  <span><%- t('home.mq') %></span>
+</div></div>
 
-    <a href="/url-shortener" class="tool-card">
-      <div class="tool-card__icon">✂️</div>
-      <div class="tool-card__title"><%= t('home.tool_shortener_name') %></div>
-      <div class="tool-card__desc"><%= t('home.tool_shortener_desc') %></div>
-      <span class="tool-card__link"><%= t('home.open_tool') %></span>
-    </a>
-
-    <a href="/redirect-checker" class="tool-card">
-      <div class="tool-card__icon">🔄</div>
-      <div class="tool-card__title"><%= t('home.tool_redirect_name') %></div>
-      <div class="tool-card__desc"><%= t('home.tool_redirect_desc') %></div>
-      <span class="tool-card__link"><%= t('home.open_tool') %></span>
-    </a>
-
-    <a href="/qr-generator" class="tool-card">
-      <div class="tool-card__icon">📱</div>
-      <div class="tool-card__title"><%= t('home.tool_qr_name') %></div>
-      <div class="tool-card__desc"><%= t('home.tool_qr_desc') %></div>
-      <span class="tool-card__link"><%= t('home.open_tool') %></span>
-    </a>
+<section id="url" class="sec tool-sec">
+  <div class="wrap">
+    <div class="sec-head reveal"><h2 class="sec-title"><%= t('home.cat_url') %></h2><span class="sec-emo">🔗</span><span class="count"><%= t('home.cnt_url') %></span></div>
+    <div class="tools-grid">
+      <article class="tool reveal tilt" data-search="utm builder url link campaign tracking"><div class="t-ico">🔗</div><h3><%= t('home.tool_utm_name') %></h3><p><%= t('home.tool_utm_desc') %></p><div class="t-foot"><span class="t-cat"><%= t('home.cat_url') %></span><a class="open" href="/utm-builder"><%= t('home.open_tool') %> <span class="ar">→</span></a></div></article>
+      <article class="tool reveal tilt" data-search="url shortener link shrink share"><div class="t-ico">✂️</div><h3><%= t('home.tool_shortener_name') %></h3><p><%= t('home.tool_shortener_desc') %></p><div class="t-foot"><span class="t-cat"><%= t('home.cat_url') %></span><a class="open" href="/url-shortener"><%= t('home.open_tool') %> <span class="ar">→</span></a></div></article>
+      <article class="tool reveal tilt" data-search="redirect checker http status chain 301"><div class="t-ico">🔄</div><h3><%= t('home.tool_redirect_name') %></h3><p><%= t('home.tool_redirect_desc') %></p><div class="t-foot"><span class="t-cat"><%= t('home.cat_url') %></span><a class="open" href="/redirect-checker"><%= t('home.open_tool') %> <span class="ar">→</span></a></div></article>
+      <article class="tool reveal tilt" data-search="qr code generator link text scan"><div class="t-ico">📱</div><h3><%= t('home.tool_qr_name') %></h3><p><%= t('home.tool_qr_desc') %></p><div class="t-foot"><span class="t-cat"><%= t('home.cat_url') %></span><a class="open" href="/qr-generator"><%= t('home.open_tool') %> <span class="ar">→</span></a></div></article>
+    </div>
   </div>
 </section>
 
-<section class="tool-category">
-  <h2><%= t('home.cat_text') %></h2>
-  <div class="tool-grid">
-    <a href="/diff-checker" class="tool-card">
-      <div class="tool-card__icon">📝</div>
-      <div class="tool-card__title"><%= t('home.tool_diff_name') %></div>
-      <div class="tool-card__desc"><%= t('home.tool_diff_desc') %></div>
-      <span class="tool-card__link"><%= t('home.open_tool') %></span>
-    </a>
-
-    <a href="/encoder-decoder" class="tool-card">
-      <div class="tool-card__icon">🔐</div>
-      <div class="tool-card__title"><%= t('home.tool_encoder_name') %></div>
-      <div class="tool-card__desc"><%= t('home.tool_encoder_desc') %></div>
-      <span class="tool-card__link"><%= t('home.open_tool') %></span>
-    </a>
-
-    <a href="/character-counter" class="tool-card">
-      <div class="tool-card__icon">🔢</div>
-      <div class="tool-card__title"><%= t('home.tool_counter_name') %></div>
-      <div class="tool-card__desc"><%= t('home.tool_counter_desc') %></div>
-      <span class="tool-card__link"><%= t('home.open_tool') %></span>
-    </a>
-
-    <a href="/cyrillic-detector" class="tool-card">
-      <div class="tool-card__icon">🇷🇺</div>
-      <div class="tool-card__title"><%= t('home.tool_cyrillic_name') %></div>
-      <div class="tool-card__desc"><%= t('home.tool_cyrillic_desc') %></div>
-      <span class="tool-card__link"><%= t('home.open_tool') %></span>
-    </a>
-
-    <a href="/html-editor" class="tool-card">
-      <div class="tool-card__icon">🌐</div>
-      <div class="tool-card__title"><%= t('home.tool_html_name') %></div>
-      <div class="tool-card__desc"><%= t('home.tool_html_desc') %></div>
-      <span class="tool-card__link"><%= t('home.open_tool') %></span>
-    </a>
-
-    <a href="/transposition-tool" class="tool-card">
-      <div class="tool-card__icon">🔀</div>
-      <div class="tool-card__title"><%= t('home.tool_transpose_name') %></div>
-      <div class="tool-card__desc"><%= t('home.tool_transpose_desc') %></div>
-      <span class="tool-card__link"><%= t('home.open_tool') %></span>
-    </a>
+<section id="text" class="sec tool-sec" style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-head reveal"><h2 class="sec-title"><%= t('home.cat_text') %></h2><span class="sec-emo">📝</span><span class="count"><%= t('home.cnt_text') %></span></div>
+    <div class="tools-grid">
+      <article class="tool reveal tilt" data-search="diff checker compare text differences"><div class="t-ico">📝</div><h3><%= t('home.tool_diff_name') %></h3><p><%= t('home.tool_diff_desc') %></p><div class="t-foot"><span class="t-cat"><%= t('home.cat_text') %></span><a class="open" href="/diff-checker"><%= t('home.open_tool') %> <span class="ar">→</span></a></div></article>
+      <article class="tool reveal tilt" data-search="encoder decoder base64 url html entities"><div class="t-ico">🔐</div><h3><%= t('home.tool_encoder_name') %></h3><p><%= t('home.tool_encoder_desc') %></p><div class="t-foot"><span class="t-cat"><%= t('home.cat_text') %></span><a class="open" href="/encoder-decoder"><%= t('home.open_tool') %> <span class="ar">→</span></a></div></article>
+      <article class="tool reveal tilt" data-search="character counter words sentences paragraphs"><div class="t-ico">🔢</div><h3><%= t('home.tool_counter_name') %></h3><p><%= t('home.tool_counter_desc') %></p><div class="t-foot"><span class="t-cat"><%= t('home.cat_text') %></span><a class="open" href="/character-counter"><%= t('home.open_tool') %> <span class="ar">→</span></a></div></article>
+      <article class="tool reveal tilt" data-search="cyrillic detector russian text unicode"><div class="t-ico">🇷</div><h3><%= t('home.tool_cyrillic_name') %></h3><p><%= t('home.tool_cyrillic_desc') %></p><div class="t-foot"><span class="t-cat"><%= t('home.cat_text') %></span><a class="open" href="/cyrillic-detector"><%= t('home.open_tool') %> <span class="ar">→</span></a></div></article>
+      <article class="tool reveal tilt" data-search="html editor preview code live"><div class="t-ico">🌐</div><h3><%= t('home.tool_html_name') %></h3><p><%= t('home.tool_html_desc') %></p><div class="t-foot"><span class="t-cat"><%= t('home.cat_text') %></span><a class="open" href="/html-editor"><%= t('home.open_tool') %> <span class="ar">→</span></a></div></article>
+      <article class="tool reveal tilt" data-search="transposition tool swap case reverse shuffle lines"><div class="t-ico">🔀</div><h3><%= t('home.tool_transpose_name') %></h3><p><%= t('home.tool_transpose_desc') %></p><div class="t-foot"><span class="t-cat"><%= t('home.cat_text') %></span><a class="open" href="/transposition-tool"><%= t('home.open_tool') %> <span class="ar">→</span></a></div></article>
+    </div>
   </div>
 </section>
 
-<section class="tool-category">
-  <h2><%= t('home.cat_validation') %></h2>
-  <div class="tool-grid">
-    <a href="/email-validator" class="tool-card">
-      <div class="tool-card__icon">📧</div>
-      <div class="tool-card__title"><%= t('home.tool_email_name') %></div>
-      <div class="tool-card__desc"><%= t('home.tool_email_desc') %></div>
-      <span class="tool-card__link"><%= t('home.open_tool') %></span>
-    </a>
-
-    <a href="/phone-validator" class="tool-card">
-      <div class="tool-card__icon">📞</div>
-      <div class="tool-card__title"><%= t('home.tool_phone_name') %></div>
-      <div class="tool-card__desc"><%= t('home.tool_phone_desc') %></div>
-      <span class="tool-card__link"><%= t('home.open_tool') %></span>
-    </a>
+<section id="validation" class="sec tool-sec" style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-head reveal"><h2 class="sec-title"><%= t('home.cat_validation') %></h2><span class="sec-emo">✅</span><span class="count"><%= t('home.cnt_val') %></span></div>
+    <div class="tools-grid">
+      <article class="tool reveal tilt" data-search="email validator format check"><div class="t-ico">📧</div><h3><%= t('home.tool_email_name') %></h3><p><%= t('home.tool_email_desc') %></p><div class="t-foot"><span class="t-cat"><%= t('home.cat_validation') %></span><a class="open" href="/email-validator"><%= t('home.open_tool') %> <span class="ar">→</span></a></div></article>
+      <article class="tool reveal tilt" data-search="phone validator format international number"><div class="t-ico">📞</div><h3><%= t('home.tool_phone_name') %></h3><p><%= t('home.tool_phone_desc') %></p><div class="t-foot"><span class="t-cat"><%= t('home.cat_validation') %></span><a class="open" href="/phone-validator"><%= t('home.open_tool') %> <span class="ar">→</span></a></div></article>
+    </div>
   </div>
 </section>
 
-<section class="tool-category">
-  <h2><%= t('home.cat_media') %></h2>
-  <div class="tool-grid">
-    <a href="/image-resizer" class="tool-card">
-      <div class="tool-card__icon">🖼️</div>
-      <div class="tool-card__title"><%= t('home.tool_resizer_name') %></div>
-      <div class="tool-card__desc"><%= t('home.tool_resizer_desc') %></div>
-      <span class="tool-card__link"><%= t('home.open_tool') %></span>
-    </a>
-
-    <a href="/creative-preview" class="tool-card">
-      <div class="tool-card__icon">📺</div>
-      <div class="tool-card__title"><%= t('home.tool_preview_name') %></div>
-      <div class="tool-card__desc"><%= t('home.tool_preview_desc') %></div>
-      <span class="tool-card__link"><%= t('home.open_tool') %></span>
-    </a>
-
-    <a href="/vast-inspector" class="tool-card">
-      <div class="tool-card__icon">🎬</div>
-      <div class="tool-card__title"><%= t('home.tool_vast_name') %></div>
-      <div class="tool-card__desc"><%= t('home.tool_vast_desc') %></div>
-      <span class="tool-card__link"><%= t('home.open_tool') %></span>
-    </a>
+<section id="media" class="sec tool-sec" style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-head reveal"><h2 class="sec-title"><%= t('home.cat_media') %></h2><span class="sec-emo">🎬</span><span class="count"><%= t('home.cnt_media') %></span></div>
+    <div class="tools-grid">
+      <article class="tool reveal tilt" data-search="image resizer crop convert size"><div class="t-ico">🖼️</div><h3><%= t('home.tool_resizer_name') %></h3><p><%= t('home.tool_resizer_desc') %></p><div class="t-foot"><span class="t-cat"><%= t('home.cat_media') %></span><a class="open" href="/image-resizer"><%= t('home.open_tool') %> <span class="ar">→</span></a></div></article>
+      <article class="tool reveal tilt" data-search="creative preview ads devices mockup"><div class="t-ico">📺</div><h3><%= t('home.tool_preview_name') %></h3><p><%= t('home.tool_preview_desc') %></p><div class="t-foot"><span class="t-cat"><%= t('home.cat_media') %></span><a class="open" href="/creative-preview"><%= t('home.open_tool') %> <span class="ar">→</span></a></div></article>
+      <article class="tool reveal tilt" data-search="vast inspector video ad tags parse"><div class="t-ico">🎬</div><h3><%= t('home.tool_vast_name') %></h3><p><%= t('home.tool_vast_desc') %></p><div class="t-foot"><span class="t-cat"><%= t('home.cat_media') %></span><a class="open" href="/vast-inspector"><%= t('home.open_tool') %> <span class="ar">→</span></a></div></article>
+    </div>
   </div>
 </section>
 
-<section class="tool-category">
-  <h2><%= t('home.cat_guides') %></h2>
-  <div class="tool-grid">
-    <a href="/macros" class="tool-card">
-      <div class="tool-card__icon">📊</div>
-      <div class="tool-card__title"><%= t('home.tool_macros_name') %></div>
-      <div class="tool-card__desc"><%= t('home.tool_macros_desc') %></div>
-      <span class="tool-card__link"><%= t('home.read_guide') %></span>
-    </a>
-
-    <a href="/resize" class="tool-card">
-      <div class="tool-card__icon">📐</div>
-      <div class="tool-card__title"><%= t('home.tool_resize_guide_name') %></div>
-      <div class="tool-card__desc"><%= t('home.tool_resize_guide_desc') %></div>
-      <span class="tool-card__link"><%= t('home.read_guide') %></span>
-    </a>
-
-    <a href="/video-editor" class="tool-card">
-      <div class="tool-card__icon">🎥</div>
-      <div class="tool-card__title"><%= t('home.tool_video_name') %></div>
-      <div class="tool-card__desc"><%= t('home.tool_video_desc') %></div>
-      <span class="tool-card__link"><%= t('home.read_guide') %></span>
-    </a>
-
-    <a href="/dictionary" class="tool-card">
-      <div class="tool-card__icon">📖</div>
-      <div class="tool-card__title"><%= t('home.tool_dict_name') %></div>
-      <div class="tool-card__desc"><%= t('home.tool_dict_desc') %></div>
-      <span class="tool-card__link"><%= t('home.read_guide') %></span>
-    </a>
+<section id="guides" class="sec tool-sec" style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-head reveal"><h2 class="sec-title"><%= t('home.cat_guides') %></h2><span class="sec-emo">📖</span><span class="count"><%= t('home.cnt_guides') %></span></div>
+    <div class="tools-grid">
+      <article class="tool reveal tilt" data-search="excel macros marketing vba reporting"><div class="t-ico">📊</div><h3><%= t('home.tool_macros_name') %></h3><p><%= t('home.tool_macros_desc') %></p><div class="t-foot"><span class="t-cat"><%= t('home.cat_guides') %></span><a class="open" href="/macros"><%= t('home.read_guide') %> <span class="ar">→</span></a></div></article>
+      <article class="tool reveal tilt" data-search="image resize guide dimensions social media ads"><div class="t-ico">📐</div><h3><%= t('home.tool_resize_guide_name') %></h3><p><%= t('home.tool_resize_guide_desc') %></p><div class="t-foot"><span class="t-cat"><%= t('home.cat_guides') %></span><a class="open" href="/resize"><%= t('home.read_guide') %> <span class="ar">→</span></a></div></article>
+      <article class="tool reveal tilt" data-search="video editor tools software comparison"><div class="t-ico">🎥</div><h3><%= t('home.tool_video_name') %></h3><p><%= t('home.tool_video_desc') %></p><div class="t-foot"><span class="t-cat"><%= t('home.cat_guides') %></span><a class="open" href="/video-editor"><%= t('home.read_guide') %> <span class="ar">→</span></a></div></article>
+      <article class="tool reveal tilt" data-search="marketing dictionary glossary terms acronyms"><div class="t-ico">📖</div><h3><%= t('home.tool_dict_name') %></h3><p><%= t('home.tool_dict_desc') %></p><div class="t-foot"><span class="t-cat"><%= t('home.cat_guides') %></span><a class="open" href="/dictionary"><%= t('home.read_guide') %> <span class="ar">→</span></a></div></article>
+    </div>
+    <div id="noRes"><span><%= t('home.nores_a') %></span><b id="noResQ"></b><span><%= t('home.nores_b') %></span></div>
   </div>
 </section>
 
-<style>
-.hero {
-  text-align: center;
-  padding: 48px 0 40px;
+<section id="playground" class="sec" style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-head reveal"><h2 class="sec-title"><%= t('home.pg_title') %></h2><span class="sec-emo">⚡</span><span class="count"><%= t('home.pg_badge') %></span></div>
+    <div class="pg reveal">
+      <textarea id="pgInput" placeholder="<%= t('home.pg_ph') %>"></textarea>
+      <div class="pg-metrics">
+        <div class="pm"><div class="num" id="mChars">0</div><p><%= t('home.m_chars') %></p></div>
+        <div class="pm"><div class="num" id="mWords">0</div><p><%= t('home.m_words') %></p></div>
+        <div class="pm"><div class="num" id="mSent">0</div><p><%= t('home.m_sent') %></p></div>
+        <div class="pm"><div class="num" id="mPara">0</div><p><%= t('home.m_para') %></p></div>
+        <div class="pm hot" style="grid-column:1/-1"><div class="num" id="mCyr">0%</div><p><%= t('home.m_cyr') %></p></div>
+        <div class="cyr-bar"><i id="cyrBar"></i></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec" style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-head reveal"><h2 class="sec-title"><%= t('home.why_title') %></h2><span class="sec-emo">❤️</span></div>
+    <div class="why-grid">
+      <div class="why reveal"><svg viewBox="0 0 24 24"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1-1.1a5.5 5.5 0 0 0-7.8 7.8l8.8 8.9 8.8-8.9a5.5 5.5 0 0 0 0-7.8z"/></svg><h3><%= t('home.w1_h') %></h3><p><%= t('home.w1_p') %></p></div>
+      <div class="why reveal"><svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/><line x1="19" y1="5" x2="23" y2="9"/><line x1="23" y1="5" x2="19" y2="9"/></svg><h3><%= t('home.w2_h') %></h3><p><%= t('home.w2_p') %></p></div>
+      <div class="why reveal"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg><h3><%= t('home.w3_h') %></h3><p><%= t('home.w3_p') %></p></div>
+      <div class="why reveal"><svg viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg><h3><%= t('home.w4_h') %></h3><p><%= t('home.w4_p') %></p></div>
+    </div>
+  </div>
+</section>
+
+<section class="sec" style="padding-top:0">
+  <div class="wrap">
+    <div class="cta-box reveal">
+      <h3><%- t('home.cta_h1') %> <b><%- t('home.cta_h2') %></b></h3>
+      <p><%- t('home.cta_p') %></p>
+      <a href="https://t.me/urbi_develop" target="_blank" rel="noopener" class="btn btn-red magnetic"><%= t('home.cta_btn') %> <span class="ar">→</span></a>
+    </div>
+  </div>
+</section>
+
+<script>
+/* ========================= Plexus ========================= */
+(function(){
+  var c=document.getElementById('plexus'),hero=document.getElementById('hero');
+  if(!c||!hero)return;
+  var ctx=c.getContext('2d');
+  var w,h,pts=[],M={x:null,y:null};
+  function size(){
+    var d=Math.min(2,devicePixelRatio||1);
+    w=hero.offsetWidth;h=hero.offsetHeight;
+    c.width=w*d;c.height=h*d;ctx.setTransform(d,0,0,d,0,0);
+    var n=Math.min(110,Math.round(w*h/15000));
+    pts=[];
+    for(var i=0;i<n;i++)pts.push({x:Math.random()*w,y:Math.random()*h,vx:(Math.random()-.5)*.55,vy:(Math.random()-.5)*.55});
+  }
+  size();addEventListener('resize',size);
+  hero.addEventListener('mousemove',function(e){var r=hero.getBoundingClientRect();M.x=e.clientX-r.left;M.y=e.clientY-r.top;});
+  hero.addEventListener('mouseleave',function(){M.x=M.y=null;});
+  var L=120,MR=190;
+  (function tick(){
+    ctx.clearRect(0,0,w,h);
+    var i,j,a,b,d,dx,dy;
+    for(i=0;i<pts.length;i++){var p=pts[i];
+      p.x+=p.vx;p.y+=p.vy;
+      if(p.x<0||p.x>w)p.vx*=-1;if(p.y<0||p.y>h)p.vy*=-1;
+      if(M.x!==null){dx=p.x-M.x;dy=p.y-M.y;d=Math.hypot(dx,dy);
+        if(d<MR&&d>.1){p.x+=dx/d*.6;p.y+=dy/d*.6;}}}
+    for(i=0;i<pts.length;i++)for(j=i+1;j<pts.length;j++){
+      a=pts[i];b=pts[j];d=Math.hypot(a.x-b.x,a.y-b.y);
+      if(d<L){ctx.strokeStyle='rgba(150,200,255,'+(1-d/L)*.35+')';ctx.lineWidth=1;
+        ctx.beginPath();ctx.moveTo(a.x,a.y);ctx.lineTo(b.x,b.y);ctx.stroke();}}
+    if(M.x!==null)for(i=0;i<pts.length;i++){p=pts[i];d=Math.hypot(p.x-M.x,p.y-M.y);
+      if(d<MR){ctx.strokeStyle='rgba(255,255,255,'+(1-d/MR)*.5+')';ctx.lineWidth=1;
+        ctx.beginPath();ctx.moveTo(p.x,p.y);ctx.lineTo(M.x,M.y);ctx.stroke();}}
+    for(i=0;i<pts.length;i++){p=pts[i];ctx.fillStyle='rgba(220,240,255,.9)';ctx.beginPath();ctx.arc(p.x,p.y,1.6,0,7);ctx.fill();}
+    requestAnimationFrame(tick);
+  })();
+})();
+
+/* ========================= Parallax ========================= */
+(function(){
+  var hero=document.getElementById('hero');
+  if(!hero)return;
+  var layers=hero.querySelectorAll('[data-depth]');
+  hero.addEventListener('mousemove',function(e){
+    var r=hero.getBoundingClientRect(),
+        mx=(e.clientX-r.left)/r.width*2-1,my=(e.clientY-r.top)/r.height*2-1;
+    layers.forEach(function(l){var d=+l.dataset.depth;l.style.transform='translate3d('+(mx*d)+'px,'+(my*d)+'px,0)';});
+  });
+  hero.addEventListener('mouseleave',function(){layers.forEach(function(l){l.style.transform='';});});
+})();
+
+/* ========================= Cursor glow ========================= */
+(function(){
+  var cur=document.getElementById('cursor');
+  if(!cur)return;
+  var x=innerWidth/2,y=innerHeight/2,cx=x,cy=y;
+  addEventListener('mousemove',function(e){x=e.clientX;y=e.clientY;});
+  (function f(){cx+=(x-cx)*.08;cy+=(y-cy)*.08;cur.style.left=cx+'px';cur.style.top=cy+'px';requestAnimationFrame(f);})();
+})();
+
+/* ========================= Counters ========================= */
+function count(el){
+  var t=+el.dataset.count,s=el.dataset.suffix||'',t0=performance.now();
+  (function f(n){
+    var p=Math.min(1,(n-t0)/1400),e=1-Math.pow(1-p,3);
+    el.textContent=Math.round(t*e)+s;
+    if(p<1)requestAnimationFrame(f);
+  })(t0);
 }
 
-.hero__sub {
-  color: var(--color-text-secondary);
-  font-size: 1.125rem;
-  max-width: 560px;
-  margin: 8px auto 0;
-}
+/* ========================= Reveal ========================= */
+(function(){
+  var io=new IntersectionObserver(function(es){
+    es.forEach(function(e){
+      if(!e.isIntersecting)return;
+      e.target.classList.add('in');
+      if(e.target.hasAttribute('data-count'))count(e.target);
+      io.unobserve(e.target);
+    });
+  },{threshold:.15});
+  document.querySelectorAll('.reveal,[data-count]').forEach(function(el){io.observe(el);});
+})();
 
-.tool-category {
-  margin-bottom: 40px;
-}
+/* ========================= Tilt ========================= */
+document.querySelectorAll('.tilt').forEach(function(card){
+  card.addEventListener('mousemove',function(e){
+    var r=card.getBoundingClientRect(),
+        x=(e.clientX-r.left)/r.width-.5,y=(e.clientY-r.top)/r.height-.5;
+    card.style.transform='perspective(900px) rotateY('+(x*6)+'deg) rotateX('+(-y*6)+'deg) translateY(-4px)';
+  });
+  card.addEventListener('mouseleave',function(){card.style.transform='';});
+});
 
-.tool-category h2 {
-  font-size: 1.25rem;
-  margin-bottom: 16px;
-  padding-bottom: 8px;
-  border-bottom: 2px solid var(--color-primary-light);
-}
-</style>
+/* ========================= Magnetic ========================= */
+document.querySelectorAll('.magnetic').forEach(function(b){
+  b.addEventListener('mousemove',function(e){
+    var r=b.getBoundingClientRect();
+    b.style.transform='translate('+((e.clientX-r.left-r.width/2)*.12)+'px,'+((e.clientY-r.top-r.height/2)*.25)+'px)';
+  });
+  b.addEventListener('mouseleave',function(){b.style.transform='';});
+});
+
+/* ========================= Search ========================= */
+(function(){
+  var inp=document.getElementById('toolSearch'),noRes=document.getElementById('noRes'),qEl=document.getElementById('noResQ');
+  if(!inp||!noRes)return;
+  var cards=[].slice.call(document.querySelectorAll('.tool')),
+      secs=[].slice.call(document.querySelectorAll('.tool-sec'));
+  inp.addEventListener('input',function(){
+    var v=inp.value.trim().toLowerCase();
+    cards.forEach(function(c){var hay=(c.dataset.search+' '+c.textContent).toLowerCase();c.classList.toggle('hide',!!v&&hay.indexOf(v)===-1);});
+    var total=0;
+    secs.forEach(function(s){var vis=s.querySelectorAll('.tool:not(.hide)').length;total+=vis;s.classList.toggle('hide',!!v&&vis===0);});
+    noRes.classList.toggle('show',!!v&&total===0);
+    if(qEl)qEl.textContent=inp.value.trim();
+  });
+})();
+
+/* ========================= Playground ========================= */
+(function(){
+  var ta=document.getElementById('pgInput');
+  if(!ta)return;
+  var C=document.getElementById('mChars'),W=document.getElementById('mWords'),
+      S=document.getElementById('mSent'),P=document.getElementById('mPara'),
+      CY=document.getElementById('mCyr'),bar=document.getElementById('cyrBar');
+  ta.addEventListener('input',function(){
+    var v=ta.value;
+    C.textContent=v.length;
+    W.textContent=(v.trim().match(/\S+/g)||[]).length;
+    S.textContent=v.split(/[.!?…]+/).filter(function(s){return s.trim();}).length;
+    P.textContent=v.split(/\n+/).filter(function(s){return s.trim();}).length;
+    var cyr=(v.match(/[\u0400-\u04FF]/g)||[]).length,
+        pct=v.length?Math.round(cyr/v.length*100):0;
+    CY.textContent=pct+'%';
+    if(bar)bar.style.width=pct+'%';
+  });
+})();
+</script>

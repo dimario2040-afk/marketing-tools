@@ -3,18 +3,20 @@
  */
 
 document.addEventListener('DOMContentLoaded', function () {
-  // ── Mobile nav toggle ──────────────────────────
-  var toggleBtn = document.querySelector('.navbar__toggle');
-  var nav = document.querySelector('.navbar__nav');
-  if (toggleBtn && nav) {
-    toggleBtn.addEventListener('click', function () {
-      nav.classList.toggle('open');
+  // ── Header scroll effect ────────────────────────
+  var header = document.getElementById('header');
+  if (header) {
+    window.addEventListener('scroll', function() {
+      header.classList.toggle('scrolled', window.scrollY > 40);
     });
-    // Close on link click
-    nav.querySelectorAll('a').forEach(function (link) {
-      link.addEventListener('click', function () {
-        nav.classList.remove('open');
-      });
+  }
+
+  // ── Mobile nav toggle ──────────────────────────
+  var burger = document.querySelector('.burger');
+  var menu = document.querySelector('.menu');
+  if (burger) {
+    burger.addEventListener('click', function() {
+      document.body.classList.toggle('menu-open');
     });
   }
 
@@ -69,7 +71,10 @@ document.addEventListener('DOMContentLoaded', function () {
 
   // ── Live character/word counter ──────────────────
   document.querySelectorAll('[data-count]').forEach(function (el) {
-    var target = document.querySelector(el.getAttribute('data-count'));
+    var sel = el.getAttribute('data-count');
+    // Numeric values are stat counters (animated on the homepage) — skip them.
+    if (!sel || /^\d+$/.test(sel)) return;
+    var target = document.querySelector(sel);
     if (!target) return;
 
     function update() {
